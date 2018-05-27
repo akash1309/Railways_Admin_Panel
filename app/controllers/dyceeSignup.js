@@ -4,13 +4,13 @@ const { DyCEE } = require('./../models/Schema.js');
 module.exports = function(req, res){
 
   var newDyCEE = DyCEE({
-    email:    req.body.email,
-    name:     req.body.name,
-    password: req.body.password,
-    mobile:   req.body.mobile
+    email:         req.body.email,
+    name:          req.body.name,
+    mobile:        req.body.mobile,
+    cee_id:        req.body.cee_id
   });
 
-  CEE.findOne({
+  DyCEE.findOne({
     mobile: req.body.mobile
   },function(err, user) {
     if (err) {
