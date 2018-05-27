@@ -16,7 +16,7 @@ const DyCEESchema = mongoose.Schema({
   Name:        { type: String, required: true  },
   email:       { type: String, required: true  },
   phoneNumber: { type: String, required: true  },
-  password:    { type: String, required: true  },
+  password:    String,
   CEE_id :     { type: String, required: true  },
   location:    String
 },
@@ -29,7 +29,7 @@ const InspectorSchema = mongoose.Schema({
   Name:        { type: String, required: true  },
   email:       { type: String, required: true  },
   phoneNumber: { type: String, required: true  },
-  password:    { type: String, required: true  },
+  password:    String,
   DyCEE_id :   { type: String, required: true  },
   location:    String
 },
