@@ -7,6 +7,7 @@ const CEESchema = mongoose.Schema({
 	password:     { type: String, required: true  },
 	location:     String
 },
+{ collection: 'CEE' },
 {
   timestamps: true
 });
@@ -19,6 +20,7 @@ const DyCEESchema = mongoose.Schema({
   CEE_id :     { type: String, required: true  },
   location:    String
 },
+{ collection: 'DyCEE' },
 {
   timestamps: true
 });
@@ -31,6 +33,7 @@ const InspectorSchema = mongoose.Schema({
   DyCEE_id :   { type: String, required: true  },
   location:    String
 },
+{ collection: 'Inspector' },
 {
   timestamps: true
 });
@@ -43,6 +46,7 @@ const VendorSchema = mongoose.Schema({
   StoreOfficer_id : { type: String, required: true  },
   location:         String
 },
+{ collection: 'Vendor' },
 {
   timestamps: true
 });
@@ -55,6 +59,7 @@ const StoreOfficerSchema = mongoose.Schema({
   DyCEE_id :   { type: String, required: true  },
   location:    String
 },
+{ collection: 'StoreOfficer' },
 {
     timestamps: true
 });
@@ -99,6 +104,7 @@ const PurchaseOrderSchema= mongoose.Schema({
     location :          { type: String, required:true },
     Ic_id:              { type: String, required:true }
 },
+{ collection: 'PurchaseOrder' },
 {
   timestamps: true
 });
@@ -128,6 +134,7 @@ const InspectionCertificateSchema= mongoose.Schema({
   Inspection_Date :  { type: String, required:true },
   InspectionName :   { type: String, required:true }
 },
+{ collection: 'InspectionCertificate' },
 {
 timestamps: true
 });
@@ -140,6 +147,7 @@ const CorrigendumSchema= mongoose.Schema({
   IcIssuingDate :   { type: String, required:true },
   Ic:               InspectionCertificateSchema
 },
+{ collection: 'Corrigendum' },
 {
 timestamps: true
 });
@@ -149,6 +157,7 @@ const CertificateSchema= mongoose.Schema({
   Itemdetails : ICItemInfoSchema,
   Status:       { type: String, required:true }
 },
+{ collection: 'Certificate' },
 {
 timestamps: true
 });
