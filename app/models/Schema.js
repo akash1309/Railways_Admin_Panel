@@ -55,7 +55,7 @@ const StoreOfficerSchema = mongoose.Schema({
   name:        { type: String, required: true  },
   email:       { type: String, required: true  },
   mobile:      { type: String, required: true  },
-  password:    { type: String, required: true  },
+  password:    String,
   dycee_id :   { type: String, required: true  },
   location:    String
 },
@@ -66,7 +66,7 @@ const StoreOfficerSchema = mongoose.Schema({
 
 const ItemInfoSchema= mongoose.Schema({
   specification:  { type:String , required:true },
-  duantity_rate:  { type: String, required:true },
+  quantity_rate:  { type: String, required:true },
   duties_charges: { type: String, required:true },
   delivery_date:  { type: String, required:true }
 },
@@ -95,14 +95,11 @@ const TenderInfoSchema= mongoose.Schema({
 const PurchaseOrderSchema= mongoose.Schema({
     order_number:       { type: String, required:true },
     order_date:         { type: String, required:true },
-    mobile:             { type:String,  required:true },
-    password :          { type: String, required:true },
     storeofficer_id :   { type: String, required:true },
     itemdetails :       ItemInfoSchema,
     vendor_info:        VendorInfoSchema,
     tender_info:        TenderInfoSchema,
-    location :          { type: String, required:true },
-    ic_id:              { type: String, required:true }
+    ic_id:              String
 },
 { collection: 'PurchaseOrder' },
 {
