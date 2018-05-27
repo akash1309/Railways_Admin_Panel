@@ -1,69 +1,63 @@
 const mongoose = require('mongoose');
 
-const BeneficiarySchema = mongoose.Schema({
-    PUID: String,
-    BUID: String,
-	Name: String,
-	eMail: String,
-	phoneNumber: String,
-	isBlocked: String,
-    otherInfo: String,
-	extraInfo: String
+const CEESchema = mongoose.Schema({
+  Name:    { type: String, required: true  },
+	email:    { type: String, required: true  },
+  phoneNumber:    { type: String, required: true  },
+	password:    { type: String, required: true  },
+	location: String
 
 }, {
     timestamps: true
 });
 
-const TransactionSchema = mongoose.Schema({
-    PostedUID: String,
-    LUID: String,
-    BOUID: String,
-    PAmount: String,
-    Type: String,
-    InterestRate: String,
-    InterestDuration: String, 
-    InterestType: String, 
-    TDate: String,
-    Medium: String, 
-    PromiseDate: String,
-    Mortagage: String, 
-    TotalAmount: String, 
-    ImageUrl: String, 
-    Locations: String,
-    Remarks: String, 
-    SettleUp: String, 
-    SettleUpDate: String,
-    isTBlocked: String, 
-    deleted: String, 
-    otherInfo: String,
-    extraInfo: String,
+const DyCEESchema = mongoose.Schema({
+  Name:    { type: String, required: true  },
+  email:    { type: String, required: true  },
+  phoneNumber:    { type: String, required: true  },
+  password:    { type: String, required: true  },
+  CEE_id : {type: String,required: true},
+  location: String
+
 }, {
     timestamps: true
 });
 
-const UserNotificationSchema = mongoose.Schema({
-    ActionUID: String,
-	AffectedUID: String,
-	ActionMsg: String,
-	AffectedMsg: String,
-    Icon: String,
-    extraInfo: String
+const InspectorSchema = mongoose.Schema({
+  Name:    { type: String, required: true  },
+  email:    { type: String, required: true  },
+  phoneNumber:    { type: String, required: true  },
+  password:    { type: String, required: true  },
+  DyCEE_id : {type: String,required: true},
+  location: String
 }, {
     timestamps: true
 });
 
-const PromotionalNotificationSchema = mongoose.Schema({
-    SenderID:  String,
-    toWhom:  String,
-	Heading:  String,
-	Content:  String,
-	extraInfo: String
+const VendorSchema = mongoose.Schema({
+  Name:    { type: String, required: true  },
+  email:    { type: String, required: true  },
+  phoneNumber:    { type: String, required: true  },
+  password:    { type: String, required: true  },
+  StoreOfficer_id : {type: String,required: true},
+  location: String
+}, {
+    timestamps: true
+});
+const StoreOfficerSchema = mongoose.Schema({
+  Name:    { type: String, required: true  },
+  email:    { type: String, required: true  },
+  phoneNumber:    { type: String, required: true  },
+  password:    { type: String, required: true  },
+  DyCEE_id : {type: String,required: true},
+  location: String
 }, {
     timestamps: true
 });
 
-var Beneficiary = mongoose.model('Beneficiary', BeneficiarySchema);
-var Transaction = mongoose.model('Transaction', TransactionSchema);
-var UserNotification = mongoose.model('UserNotification', UserNotificationSchema);
-var PromotionalNotification = mongoose.model('PromotionalNotification', PromotionalNotificationSchema);
-module.exports = {Beneficiary: Beneficiary,Transaction: Transaction,UserNotification: UserNotification,PromotionalNotification: PromotionalNotification};
+var CEE = mongoose.model('CEE', CEESchema);
+var DyCEE = mongoose.model('DyCEE', DyCEESchema);
+var Inspector = mongoose.model('Inspector', InspectorSchema);
+var StoreOfficer = mongoose.model('StoreOfficer', StoreOfficerSchema);
+var Vendor = mongoose.model('Vendor', VendorSchema);
+module.exports = {CEE:CEE, DyCEE:DyCEE ,Inspector:Inspector,StoreOfficer:StoreOfficer,Vendor:Vendor};
