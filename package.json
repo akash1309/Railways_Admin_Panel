@@ -1,0 +1,27 @@
+{
+  "name": "railways_admin_panel",
+  "version": "1.0.0",
+  "description": "A complete flow for purchase of items for railways, their inspection and approval by Chief Electrical Engineer.",
+  "main": "server.js",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "mongoose": "^5.1.2",
+    "nodemon": "^1.17.5"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/akash1309/Railways_Admin_Panel.git"
+  },
+  "author": "Akash Goyal",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/akash1309/Railways_Admin_Panel/issues"
+  },
+  "homepage": "https://github.com/akash1309/Railways_Admin_Panel#readme"
+}
