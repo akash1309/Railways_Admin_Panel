@@ -4,12 +4,14 @@ const { PurchaseOrder } = require('./../models/Schema.js');
 module.exports = function(req, res){
 
   var newPurchaseOrder = PurchaseOrder({
-    order_number:    req.body.order_number,
-    order_date:     req.body.order_date,
-    storeofficer_id : req.body.storeofficer_id,
-    itemdetails: req.body.itemdetails,
-    vendor_info: req.body.vendor_info,
-    tender_info: req.body.tender_info
+    order_number:   	 req.body.order_number,
+    order_date:     	 req.body.order_date,
+    storeofficer_id : 	 req.body.storeofficer_id,
+    itemdetails: 		 req.body.itemdetails,
+    vendor_info: 		 req.body.vendor_info,
+    tender_info: 		 req.body.tender_info,
+    offer_no:			 req.body.offer_no,
+    offer_date:		     req.body.offer_date
   });
 
   PurchaseOrder.findOne({
