@@ -1,5 +1,6 @@
 //controllers
 const ceeSignup = require('./../controllers/ceeSignup');
+const initialResponse = require('./../controllers/initialResponse');
 const dyceeSignup = require('./../controllers/dyceeSignup');
 const inspectorAdd = require('./../controllers/inspectorAdd');
 const storeOfficerAdd = require('./../controllers/storeOfficerAdd');
@@ -17,4 +18,5 @@ module.exports = function(app, db) {
   app.post('/ic/generate',icGenerate);
   app.post('/corrigendum/generate',corrigendumGenerate);
   app.post('/irStatus/set',setirStatus);
+  app.get('/',initialResponse);
 }
