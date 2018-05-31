@@ -55,7 +55,7 @@ const StoreOfficerSchema = mongoose.Schema({
   name:        { type: String, required: true  },
   email:       { type: String, required: true  },
   mobile:      { type: String, required: true  },
-  password:    { type: String, required: true  },
+  password:    String,
   dycee_id :   { type: String, required: true  },
   location:    String
 },
@@ -66,7 +66,7 @@ const StoreOfficerSchema = mongoose.Schema({
 
 const ItemInfoSchema= mongoose.Schema({
   specification:  { type:String , required:true },
-  duantity_rate:  { type: String, required:true },
+  quantity_rate:  { type: String, required:true },
   duties_charges: { type: String, required:true },
   delivery_date:  { type: String, required:true }
 },
@@ -95,20 +95,20 @@ const TenderInfoSchema= mongoose.Schema({
 const PurchaseOrderSchema= mongoose.Schema({
     order_number:       { type: String, required:true },
     order_date:         { type: String, required:true },
-    mobile:             { type:String,  required:true },
-    password :          { type: String, required:true },
     storeofficer_id :   { type: String, required:true },
     itemdetails :       ItemInfoSchema,
     vendor_info:        VendorInfoSchema,
     tender_info:        TenderInfoSchema,
-    location :          { type: String, required:true },
-    ic_id:              { type: String, required:true }
+    offer_no:			{ type: String, required:true },
+    offer_date:			{ type:String, required:true },
+    ic_id:              String
 },
 { collection: 'PurchaseOrder' },
 {
   timestamps: true
 });
 
+/*
 const ICItemInfoSchema= mongoose.Schema({
   specification:     { type:String , required:true },
   quantity_rate :    { type: String, required:true },
@@ -120,19 +120,24 @@ const ICItemInfoSchema= mongoose.Schema({
 {
   timestamps: true
 });
+*/
 
 const InspectionCertificateSchema= mongoose.Schema({
   order_number :      { type: String, required:true },
-  mobile:             { type: String, required:true },
-  password :          { type: String, required:true },
-  storeofficer_id :   { type: String, required:true },
-  item_details :      ICItemInfoSchema,
-  vendor_info:        VendorInfoSchema,
-  tender_info:        TenderInfoSchema,
+//  mobile:             { type: String, required:true },
+ // password :          { type: String, required:true },
+//  storeofficer_id :   { type: String, required:true },
+//  item_details :      ICItemInfoSchema,
+  quantity_offered:  { type: String, required:true },
+  quantity_approved: { type: String, required:true },
+ // vendor_info:        VendorInfoSchema,
+//  tender_info:        TenderInfoSchema,
   location :          { type: String, required:true },
   ic_id:              { type: String, required:true },
   inspection_date :   { type: String, required:true },
-  inspection_name :   { type: String, required:true }
+  ic_signed_on :	  {type: String, required:true},
+  inspector_name :   { type: String, required:true },
+  inspector_mobile : { type:String, required:true }
 },
 { collection: 'InspectionCertificate' },
 {
@@ -140,24 +145,30 @@ timestamps: true
 });
 
 const CorrigendumSchema= mongoose.Schema({
-  order_number :     { type: String, required:true },
-  issuing_date:      { type: String , required:true},
-  storeofficer_id :  { type: String, required:true },
-  ic_id:             { type: String, required:true },
-  ic_issuing_date :  { type: String, required:true },
-  ic:                InspectionCertificateSchema
+	corrigendum_number : {type: String, required:true },
+    order_number :   	 { type: String, required:true },
+    order_date : 		 {type:String, required:true },
+//  issuing_date:      	 { type: String , required:true},
+//  storeofficer_id :  	 { type: String, required:true },
+    ic_id:            	 { type: String, required:true },
+    ic_date :  			 { type: String, required:true },
+    inspector_name :  	 { type: String, required:true },
+    inspector_mobile :	 { type:String, required:true },
+    dycee_id : 				String
+//  ic:              		InspectionCertificateSchema
 },
 { collection: 'Corrigendum' },
 {
 timestamps: true
 });
 
-const CertificateSchema= mongoose.Schema({
+const InspectionReportSchema= mongoose.Schema({
   order_number : { type: String, required:true },
-  item_details : ICItemInfoSchema,
+  ic_id:         { type: String, required:true },
+  //item_details : ICItemInfoSchema,
   status:        { type: String, required:true }
 },
-{ collection: 'Certificate' },
+{ collection: 'InspectionReport' },
 {
 timestamps: true
 });
@@ -170,7 +181,7 @@ var Vendor = mongoose.model('Vendor', VendorSchema);
 var PurchaseOrder = mongoose.model('PurchaseOrder',PurchaseOrderSchema);
 var InspectionCertificate = mongoose.model('InspectionCertificate',InspectionCertificateSchema);
 var Corrigendum = mongoose.model('Corrigendum', CorrigendumSchema);
-var Certificate = mongoose.model('Certificate', CertificateSchema);
+var InspectionReport = mongoose.model('InspectionReport', InspectionReportSchema);
 module.exports = {
   CEE:CEE,
   DyCEE:DyCEE,
@@ -180,5 +191,5 @@ module.exports = {
   PurchaseOrder:PurchaseOrder,
   InspectionCertificate:InspectionCertificate,
   Corrigendum:Corrigendum,
-  Certificate:Certificate
+  InspectionReport:InspectionReport
 };

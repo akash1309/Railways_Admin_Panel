@@ -1,20 +1,22 @@
 //controllers
 const ceeSignup = require('./../controllers/ceeSignup');
+const initialResponse = require('./../controllers/initialResponse');
 const dyceeSignup = require('./../controllers/dyceeSignup');
-<<<<<<< Updated upstream
 const inspectorAdd = require('./../controllers/inspectorAdd');
-=======
-const vendorSignup = require('./../controllers/vendorSignup');
-
->>>>>>> Stashed changes
+const storeOfficerAdd = require('./../controllers/storeOfficerAdd');
+const purchaseOrderAdd = require('./../controllers/purchaseOrderAdd');
+const icGenerate = require('./../controllers/icGenerate');
+const corrigendumGenerate = require('./../controllers/corrigendumGenerate');
+const setirStatus = require('./../controllers/setInspectionReportStatus');
 
 module.exports = function(app, db) {
   app.post('/cee/signup', ceeSignup);
   app.post('/dycee/signup',dyceeSignup);
-<<<<<<< Updated upstream
   app.post('/inspector/add', inspectorAdd);
-=======
-  app.post('/vendor/signup',vendorSignup);
-
->>>>>>> Stashed changes
+  app.post('/storeofficer/add', storeOfficerAdd);
+  app.post('/purchaseorder/add', purchaseOrderAdd);
+  app.post('/ic/generate',icGenerate);
+  app.post('/corrigendum/generate',corrigendumGenerate);
+  app.post('/irStatus/set',setirStatus);
+  app.get('/',initialResponse);
 }
