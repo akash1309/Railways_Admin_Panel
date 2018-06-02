@@ -20,7 +20,7 @@ module.exports = function(app, db) {
   app.post('/purchaseorder/add', purchaseOrderAdd);
   app.post('/ic/generate',icGenerate);
   app.post('/corrigendum/generate',corrigendumGenerate);
-  app.get('/',initialResponse);
+  app.get('/start',initialResponse);
   app.post('/irStatus/set',irStatus.setIrStatus);
   app.get('/irStatus/get/:order_number/:ic_id',irStatus.getIrStatus);
   app.get('/inspector/all/:dycee_id',getAllInspectors.findSome);
