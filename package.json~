@@ -6,7 +6,6 @@
   "dependencies": {
     "body-parser": "^1.18.3",
     "express": "^4.16.3",
-    "http": "0.0.0",
     "mongoose": "^5.1.2",
     "nodemon": "^1.17.5"
   },
@@ -24,6 +23,5 @@
   "bugs": {
     "url": "https://github.com/akash1309/Railways_Admin_Panel/issues"
   },
-  "homepage": "https://github.com/akash1309/Railways_Admin_Panel#readme",
-"serve": "nodemon server.js"
+  "homepage": "https://github.com/akash1309/Railways_Admin_Panel#readme"
 }

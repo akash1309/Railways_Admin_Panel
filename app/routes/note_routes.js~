@@ -27,5 +27,6 @@ module.exports = function(app, db) {
   app.get('/inspector/all',getAllInspectors.findAll);
   app.get('/order/get/:order_number',getPurchaseOrder.findOne);
   app.get('/dycee/all',getAllDyCee.findAll);
-
+  
+>>>>>>> Stashed changes
 }
