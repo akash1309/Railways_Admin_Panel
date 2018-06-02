@@ -1,7 +1,7 @@
 // routes/note_routes.js
 const { InspectionReport } = require('./../models/Schema.js');
 
-module.exports = function(req, res){
+exports.setIrStatus = (req, res) => {
 
   var newInspectionReport = InspectionReport({
 	  order_number : req.body.order_number,
@@ -30,4 +30,31 @@ module.exports = function(req, res){
       });
     }
   });
+}
+
+exports.getIrStatus = (req,res) => {
+	
+	InspectionReport.find({
+		order_number : req.params.order_number,
+		ic_id : req.params.ic_id
+	})
+	.then(irInfo => {
+		if(irInfo.length == 0){
+			return res.status(404).send({
+				message : "1 No Inspection Report found for order_no "+req.params.order_number+" and ic_id "+req.params.ic_id
+			});
+		}
+		res.send(irInfo);
+	})
+	.catch(err => {
+		if(err.kind == 'ObjectId') {
+            return res.status(404).send({
+                message: "2 No inspection report found for order_no "+req.params.order_number+" and ic_id "+req.params.ic_id
+            });
+        }
+		return res.status(500).send({
+			message : "Some error occured while extracting Inspection Report"
+		});
+		
+	});
 }

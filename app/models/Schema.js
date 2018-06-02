@@ -31,6 +31,7 @@ const InspectorSchema = mongoose.Schema({
   mobile:      { type: String, required: true  },
   password:    String,
   dycee_id :   { type: String, required: true  },
+  cee_id: 	   { type: String, required: true  },
   location:    String
 },
 { collection: 'Inspector' },
