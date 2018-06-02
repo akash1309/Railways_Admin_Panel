@@ -42,7 +42,7 @@ const VendorSchema = mongoose.Schema({
   name:             { type: String, required: true  },
   email:            { type: String, required: true  },
   mobile:           { type: String, required: true  },
-  password:         { type: String, required: true  },
+  password:         String,
   storeofficer_id : { type: String, required: true  },
   location:         String
 },
