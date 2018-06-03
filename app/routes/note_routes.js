@@ -11,6 +11,9 @@ const irStatus = require('./../controllers/inspectionReportStatus');
 const getAllInspectors = require('./../controllers/getAllInspectors');
 const getPurchaseOrder = require('./../controllers/getPurchaseOrder');
 const getAllDyCee = require('./../controllers/getAllDyCee');
+const setirStatus = require('./../controllers/InspectionReportStatus');
+const getAllVendors = require('./../controllers/getAllVendors');
+
 
 module.exports = function(app, db) {
   app.post('/cee/signup', ceeSignup);
@@ -27,5 +30,6 @@ module.exports = function(app, db) {
   app.get('/inspector/all',getAllInspectors.findAll);
   app.get('/order/get/:order_number',getPurchaseOrder.findOne);
   app.get('/dycee/all',getAllDyCee.findAll);
-
+  app.get('/vendor/all',getAllVendors.findAll);
+  app.get('/',initialResponse);
 }
