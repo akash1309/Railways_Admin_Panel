@@ -11,7 +11,7 @@ const irStatus = require('./../controllers/inspectionReportStatus');
 const getAllInspectors = require('./../controllers/getAllInspectors');
 const getPurchaseOrder = require('./../controllers/getPurchaseOrder');
 const getAllDyCee = require('./../controllers/getAllDyCee');
-const setirStatus = require('./../controllers/InspectionReportStatus');
+const setirStatus = require('./../controllers/inspectionReportStatus');
 const getAllVendors = require('./../controllers/getAllVendors');
 
 
