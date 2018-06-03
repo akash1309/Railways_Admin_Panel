@@ -109,19 +109,16 @@ const PurchaseOrderSchema= mongoose.Schema({
   timestamps: true
 });
 
-/*
-const ICItemInfoSchema= mongoose.Schema({
-  specification:     { type:String , required:true },
-  quantity_rate :    { type: String, required:true },
-  duties_charges :   { type: String, required:true },
-  delivery_date :    { type: String, required:true },
-  quantity_offered:  { type: String, required:true },
-  quantity_approved: { type: String, required:true }
+
+const ItemSchema= mongoose.Schema({
+  name      :    String,
+  quantity  :    { type: String, required:true }
+
 },
 {
   timestamps: true
 });
-*/
+
 
 const InspectionCertificateSchema= mongoose.Schema({
   order_number :      { type: String, required:true },
@@ -179,6 +176,7 @@ var DyCEE = mongoose.model('DyCEE', DyCEESchema);
 var Inspector = mongoose.model('Inspector', InspectorSchema);
 var StoreOfficer = mongoose.model('StoreOfficer', StoreOfficerSchema);
 var Vendor = mongoose.model('Vendor', VendorSchema);
+var Items = mongoose.model('Items',ItemSchema);
 var PurchaseOrder = mongoose.model('PurchaseOrder',PurchaseOrderSchema);
 var InspectionCertificate = mongoose.model('InspectionCertificate',InspectionCertificateSchema);
 var Corrigendum = mongoose.model('Corrigendum', CorrigendumSchema);
@@ -189,6 +187,7 @@ module.exports = {
   Inspector:Inspector,
   StoreOfficer:StoreOfficer,
   Vendor:Vendor,
+  Items:Items,
   PurchaseOrder:PurchaseOrder,
   InspectionCertificate:InspectionCertificate,
   Corrigendum:Corrigendum,
