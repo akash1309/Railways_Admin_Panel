@@ -21,7 +21,8 @@ const icGenerate = require('./../controllers/inspectionCertificate/post/icGenera
 const corrigendumGenerate = require('./../controllers/corrigendum/post/corrigendumGenerate');
 
 const irStatus = require('./../controllers/inspectionReport/inspectionReportStatus');
-
+const showIC = require('./../controllers/showIC');
+const showItems = require('./../controllers/showItems');
 const initialResponse = require('./../controllers/initialResponse');
 
 module.exports = function(app, db) {
@@ -52,4 +53,6 @@ module.exports = function(app, db) {
 
   app.get('/start',initialResponse);
   app.get('/',initialResponse);
+  app.get('/showIC',showIC.findAll);
+  app.get('/showItems',showItems.findAll);
 }
