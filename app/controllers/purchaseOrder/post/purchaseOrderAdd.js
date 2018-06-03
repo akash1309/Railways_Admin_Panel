@@ -1,5 +1,5 @@
 // routes/note_routes.js
-const { PurchaseOrder } = require('./../models/Schema.js');
+const { PurchaseOrder } = require('./../../../models/Schema.js');
 
 module.exports = function(req, res){
 

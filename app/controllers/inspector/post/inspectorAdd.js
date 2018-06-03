@@ -1,26 +1,27 @@
 // routes/note_routes.js
-const { Vendor } = require('./../models/Schema.js');
+const { Inspector } = require('./../../../models/Schema.js');
 
 module.exports = function(req, res){
 
-  var newVendor = Vendor({
-    email:             req.body.email,
-    name:              req.body.name,
-    mobile:            req.body.mobile,
-    storeofficer_id:   req.body.storeofficer_id
+  var newInspector = Inspector({
+    email:    req.body.email,
+    name:     req.body.name,
+    mobile:   req.body.mobile,
+    dycee_id: req.body.dycee_id,
+    cee_id:   req.body.cee_id
   });
 
-  Vendor.findOne({
+  Inspector.findOne({
     mobile: req.body.mobile
   },function(err, user) {
     if (err) {
       res.send('Error fetching User!');
     }
     else if(user != null){
-      res.send('Vendor already present');
+      res.send('Inspector already present');
     }
     else{
-      newVendor.save(function(err, user) {
+      newInspector.save(function(err, user) {
         if (err) {
           res.send('Error in registration!');
         }

@@ -1,5 +1,5 @@
 // routes/note_routes.js
-const { InspectionReport } = require('./../models/Schema.js');
+const { InspectionReport } = require('./../../models/Schema.js');
 
 exports.setIrStatus = (req, res) => {
 
@@ -33,7 +33,7 @@ exports.setIrStatus = (req, res) => {
 }
 
 exports.getIrStatus = (req,res) => {
-	
+
 	InspectionReport.find({
 		order_number : req.params.order_number,
 		ic_id : req.params.ic_id
@@ -55,6 +55,6 @@ exports.getIrStatus = (req,res) => {
 		return res.status(500).send({
 			message : "Some error occured while extracting Inspection Report"
 		});
-		
+
 	});
 }

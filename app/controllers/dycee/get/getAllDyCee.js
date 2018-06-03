@@ -1,4 +1,4 @@
-const { DyCEE } = require('./../models/Schema.js');
+const { DyCEE } = require('./../../../models/Schema.js');
 
 exports.findAll = (req,res) => {
 	DyCEE.find()
@@ -16,10 +16,10 @@ exports.findAll = (req,res) => {
                 message: "No DyCEE found"
             });
         }
-		
+
 		return res.status(500).send({
 			message: "Some error occurred while getting all DyCEE."
 		});
-		
-	});	
+
+	});
 }

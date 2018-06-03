@@ -1,6 +1,6 @@
-const { Inspector } = require('./../models/Schema.js');
+const { Inspector } = require('./../../../models/Schema.js');
 
-exports.findSome = (req,res) => {	
+exports.findSome = (req,res) => {
 
 	Inspector.find({dycee_id : req.params.dycee_id})
 	.then(inspectorInfo => {
@@ -17,12 +17,12 @@ exports.findSome = (req,res) => {
                 message: "No inspector under deputy CEE with id " + req.params.dycee_id
             });
         }
-		
+
 		return res.status(500).send({
 			message: "Some error occurred while getting all inspectors of a particular Deputy CEE."
 		});
-		
-	});	
+
+	});
 }
 
 exports.findAll = (req,res) => {
@@ -41,10 +41,10 @@ exports.findAll = (req,res) => {
                 message: "No inspector found"
             });
         }
-		
+
 		return res.status(500).send({
 			message: "Some error occurred while getting all inspectors."
 		});
-		
-	});	
+
+	});
 }

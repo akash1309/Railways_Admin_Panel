@@ -1,5 +1,5 @@
 // routes/note_routes.js
-const { InspectionCertificate } = require('./../models/Schema.js');
+const { InspectionCertificate } = require('./../../../models/Schema.js');
 
 module.exports = function(req, res){
 

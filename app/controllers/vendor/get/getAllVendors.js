@@ -1,4 +1,4 @@
-const { Vendor } = require('./../models/Schema.js');
+const { Vendor } = require('./../../../models/Schema.js');
 
 exports.findAll = (req,res) => {
   Vendor.find({})
