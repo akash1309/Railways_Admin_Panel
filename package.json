@@ -25,5 +25,5 @@
     "url": "https://github.com/akash1309/Railways_Admin_Panel/issues"
   },
   "homepage": "https://github.com/akash1309/Railways_Admin_Panel#readme",
-"serve": "nodemon server.js"
+  "serve": "nodemon server.js"
 }

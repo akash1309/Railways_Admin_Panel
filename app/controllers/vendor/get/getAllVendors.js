@@ -1,7 +1,7 @@
-const { Vendor } = require('./../../../models/Schema.js');
+const { Logins } = require('./../../../models/Schema.js');
 
 exports.findAll = (req,res) => {
-  Vendor.find({})
+  Logins.find({})
   .then(vendorInfo => {
        if(vendorInfo.length == 0) {
          return res.status(404).send(
@@ -10,7 +10,7 @@ exports.findAll = (req,res) => {
            }
          );
        }
-         res.send(vendorInfo);
+         res.status(200).send(vendorInfo);
 
 
   })

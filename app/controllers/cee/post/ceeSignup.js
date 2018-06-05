@@ -1,20 +1,21 @@
 // routes/note_routes.js
-const { CEE } = require('./../../../models/Schema.js');
+const { Logins } = require('./../../../models/Schema.js');
 
 module.exports = function(req, res){
 
-  var newCEE = CEE({
+  var newCEE = Logins({
     email:    req.body.email,
     name:     req.body.name,
     password: req.body.password,
-    mobile:   req.body.mobile
+    mobile:   req.body.mobile,
+    role:     req.body.role
   });
 
-  CEE.findOne({
+  Logins.findOne({
     mobile: req.body.mobile
   },function(err, user) {
     if (err) {
-      res.send('Error fetching User!');
+      res.status(500).send('Error fetching User!');
     }
     else if(user != null){
       res.send('CEE already present');
@@ -25,7 +26,7 @@ module.exports = function(req, res){
           res.send('Error in registration!');
         }
         else
-          res.send(user);
+          res.status(200).send(user);
       });
     }
   });

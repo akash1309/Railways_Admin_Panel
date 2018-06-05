@@ -9,7 +9,7 @@ const server = http.createServer(app);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-const port = 8080;
+const port = 8000;
 // MongoDB Connection using mongoose
 mongoose.connect(db.url, (err, database) => {
   if (err) return console.log(err)

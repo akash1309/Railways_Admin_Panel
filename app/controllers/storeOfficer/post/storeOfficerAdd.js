@@ -1,20 +1,22 @@
 // routes/note_routes.js
-const { StoreOfficer } = require('./../../../models/Schema.js');
+const { Logins } = require('./../../../models/Schema.js');
 
 module.exports = function(req, res){
 
-  var newStoreOfficer = StoreOfficer({
-    email:    req.body.email,
-    name:     req.body.name,
-    mobile: req.body.mobile,
-    dycee_id:   req.body.dycee_id
+  var newStoreOfficer = Logins({
+    email:      req.body.email,
+    name:       req.body.name,
+    mobile:     req.body.mobile,
+    dycee_id:   req.body.dycee_id,
+    role:       req.body.role,
+    location:   req.body.location
   });
 
-  StoreOfficer.findOne({
+  Logins.findOne({
     mobile: req.body.mobile
   },function(err, user) {
     if (err) {
-      res.send('Error fetching User!');
+      res.status(500).send('Error fetching User!');
     }
     else if(user != null){
       res.send('StoreOfficer already present');
@@ -25,7 +27,7 @@ module.exports = function(req, res){
           res.send('Error in registration!');
         }
         else
-          res.send(user);
+          res.status(200).send(user);
       });
     }
   });

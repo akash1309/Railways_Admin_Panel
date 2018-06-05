@@ -1,68 +1,19 @@
 const mongoose = require('mongoose');
 
-const CEESchema = mongoose.Schema({
+const LoginsSchema = mongoose.Schema({
   name:         { type: String, required: true  },
 	email:        { type: String, required: true  },
   mobile:       { type: String, required: true  },
-	password:     { type: String, required: true  },
-	location:     String
+	password:     String,
+	location:     String,
+  cee_id :      String,
+  dycee_id :    String,
+  storeofficer_id : String,
+  role : {type:String, required: true }
 },
-{ collection: 'CEE' },
+{ collection: 'Logins' },
 {
   timestamps: true
-});
-
-const DyCEESchema = mongoose.Schema({
-  name:        { type: String, required: true  },
-  email:       { type: String, required: true  },
-  mobile:      { type: String, required: true  },
-  password:    String,
-  cee_id :     { type: String, required: true  },
-  location:    String
-},
-{ collection: 'DyCEE' },
-{
-  timestamps: true
-});
-
-const InspectorSchema = mongoose.Schema({
-  name:        { type: String, required: true  },
-  email:       { type: String, required: true  },
-  mobile:      { type: String, required: true  },
-  password:    String,
-  dycee_id :   { type: String, required: true  },
-  cee_id: 	   { type: String, required: true  },
-  location:    String
-},
-{ collection: 'Inspector' },
-{
-  timestamps: true
-});
-
-const VendorSchema = mongoose.Schema({
-  name:             { type: String, required: true  },
-  email:            { type: String, required: true  },
-  mobile:           { type: String, required: true  },
-  password:         String,
-  storeofficer_id : { type: String, required: true  },
-  location:         String
-},
-{ collection: 'Vendor' },
-{
-  timestamps: true
-});
-
-const StoreOfficerSchema = mongoose.Schema({
-  name:        { type: String, required: true  },
-  email:       { type: String, required: true  },
-  mobile:      { type: String, required: true  },
-  password:    String,
-  dycee_id :   { type: String, required: true  },
-  location:    String
-},
-{ collection: 'StoreOfficer' },
-{
-    timestamps: true
 });
 
 const ItemInfoSchema= mongoose.Schema({
@@ -171,22 +122,24 @@ const InspectionReportSchema= mongoose.Schema({
 timestamps: true
 });
 
-var CEE = mongoose.model('CEE', CEESchema);
+/*var CEE = mongoose.model('CEE', CEESchema);
 var DyCEE = mongoose.model('DyCEE', DyCEESchema);
 var Inspector = mongoose.model('Inspector', InspectorSchema);
 var StoreOfficer = mongoose.model('StoreOfficer', StoreOfficerSchema);
-var Vendor = mongoose.model('Vendor', VendorSchema);
+var Vendor = mongoose.model('Vendor', VendorSchema);*/
+var Logins = mongoose.model('Logins', LoginsSchema);
 var Items = mongoose.model('Items',ItemSchema);
 var PurchaseOrder = mongoose.model('PurchaseOrder',PurchaseOrderSchema);
 var InspectionCertificate = mongoose.model('InspectionCertificate',InspectionCertificateSchema);
 var Corrigendum = mongoose.model('Corrigendum', CorrigendumSchema);
 var InspectionReport = mongoose.model('InspectionReport', InspectionReportSchema);
 module.exports = {
-  CEE:CEE,
+/*  CEE:CEE,
   DyCEE:DyCEE,
   Inspector:Inspector,
   StoreOfficer:StoreOfficer,
-  Vendor:Vendor,
+  Vendor:Vendor,*/
+  Logins:Logins,
   Items:Items,
   PurchaseOrder:PurchaseOrder,
   InspectionCertificate:InspectionCertificate,

@@ -1,20 +1,22 @@
 // routes/note_routes.js
-const { Vendor } = require('./../../../models/Schema.js');
+const { Logins } = require('./../../../models/Schema.js');
 
 module.exports = function(req, res){
 
-  var newVendor = Vendor({
+  var newVendor = Logins({
     email:             req.body.email,
     name:              req.body.name,
     mobile:            req.body.mobile,
-    storeofficer_id:   req.body.storeofficer_id
+    storeofficer_id:   req.body.storeofficer_id,
+    role:              req.body.role,
+    location:          req.body.location
   });
 
-  Vendor.findOne({
+  Logins.findOne({
     mobile: req.body.mobile
   },function(err, user) {
     if (err) {
-      res.send('Error fetching User!');
+      res.status(500).send('Error fetching User!');
     }
     else if(user != null){
       res.send('Vendor already present');
@@ -25,7 +27,7 @@ module.exports = function(req, res){
           res.send('Error in registration!');
         }
         else
-          res.send(user);
+          res.status(200).send(user);
       });
     }
   });

@@ -1,21 +1,22 @@
 // routes/note_routes.js
-const { Inspector } = require('./../../../models/Schema.js');
+const { Logins } = require('./../../../models/Schema.js');
 
 module.exports = function(req, res){
 
-  var newInspector = Inspector({
+  var newInspector = Logins({
     email:    req.body.email,
     name:     req.body.name,
     mobile:   req.body.mobile,
     dycee_id: req.body.dycee_id,
-    cee_id:   req.body.cee_id
+    role:     req.body.role,
+    location:   req.body.location
   });
 
-  Inspector.findOne({
+  Logins.findOne({
     mobile: req.body.mobile
   },function(err, user) {
     if (err) {
-      res.send('Error fetching User!');
+      res.status(500).send('Error fetching User!');
     }
     else if(user != null){
       res.send('Inspector already present');
@@ -23,10 +24,10 @@ module.exports = function(req, res){
     else{
       newInspector.save(function(err, user) {
         if (err) {
-          res.send('Error in registration!');
+          res.status(500).send('Error in registration!');
         }
         else
-          res.send(user);
+          res.status(200).send(user);
       });
     }
   });

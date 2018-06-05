@@ -1,7 +1,7 @@
-const { StoreOfficer } = require('./../../../models/Schema.js');
+const { Logins } = require('./../../../models/Schema.js');
 
 exports.findAll = (req,res) => {
-  StoreOfficer.find({})
+  Logins.find({})
   .then(StoreOfficerInfo => {
        if(StoreOfficerInfo.length == 0) {
          return res.status(404).send(
@@ -10,7 +10,7 @@ exports.findAll = (req,res) => {
            }
          );
        }
-         res.send(StoreOfficerInfo);
+         res.status(200).send(StoreOfficerInfo);
 
 
   })

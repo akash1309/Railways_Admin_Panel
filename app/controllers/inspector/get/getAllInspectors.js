@@ -1,15 +1,15 @@
-const { Inspector } = require('./../../../models/Schema.js');
+const { Logins } = require('./../../../models/Schema.js');
 
 exports.findSome = (req,res) => {
 
-	Inspector.find({dycee_id : req.params.dycee_id})
+	Logins.find({dycee_id : req.params.dycee_id, role: "Inspector"})
 	.then(inspectorInfo => {
 		if(inspectorInfo.length == 0) {
             return res.status(404).send({
                 message: "No inspector under deputy CEE with id " + req.params.dycee_id
             });
         }
-		res.send(inspectorInfo);
+		res.status(200).send(inspectorInfo);
 	})
 	.catch(err => {
 		if(err.kind == 'ObjectId') {
@@ -26,14 +26,14 @@ exports.findSome = (req,res) => {
 }
 
 exports.findAll = (req,res) => {
-	Inspector.find()
+	Logins.find({role: "Inspector"})
 	.then(inspectorInfo => {
 		if(inspectorInfo.length == 0) {
             return res.status(404).send({
                 message: "No inspector found"
             });
         }
-		res.send(inspectorInfo);
+		res.status(200).send(inspectorInfo);
 	})
 	.catch(err => {
 		if(err.kind == 'ObjectId') {
