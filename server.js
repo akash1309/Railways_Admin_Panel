@@ -4,10 +4,13 @@ const mongoose           = require('mongoose');
 const bodyParser         = require('body-parser');
 const db                 = require('./config/db');
 const app                = express();
+var cors                 = require('cors');
+
 const server = http.createServer(app);
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cors({origin: '*'}));
 
 const port = 8080;
 // MongoDB Connection using mongoose
