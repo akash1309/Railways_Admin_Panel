@@ -18,15 +18,9 @@ exports.findOne = (req,res) => {
 		});
 	})
 	.catch(err => {
-		if(err.kind == 'ObjectId') {
-      return res.status(404).send({
-        "message": "No one is registered with this mobile number."
-      });
-    }
-		return res.status(500).send({
-			"message": "Some error occurred while getting login information.",
-      "error": err
-		});
+    return res.status(404).send({
+      "message": "No one is registered with this mobile number."
+    });
 	});
-	
+
 }
