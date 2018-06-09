@@ -1,26 +1,22 @@
-const { Logins } = require('./../../models/Schema.js');
+const { Logins } = require("./../../models/Schema");
 
-exports.findOne = (req,res) => {
+exports.update = (req,res) => {
 
-	Logins.findOne({mobile : req.params.mobile})
-	.then(LoginsInfo => {
-    if(LoginsInfo.password == undefined) {
-      return res.status(200).send({
-        "message": "Password field empty. Requires SignUp",
-        "role": LoginsInfo.role,
-        "flag": "0"
+  Logins.update({ mobile : req.body.mobile }, { password : req.body.password }, function(err,response){
+      if(err){
+        return res.status(500).send({
+         "error" : err,
+         "message" : "error in signup with mobile number " + req.body.mobile
+
+        });
+
+        }
+        else {
+          return res.status(200).send({
+            "message" : "Successfully signed up..."
+          });
+
+        }
+
       });
-    }
-    return res.status(200).send({
-      "message": "Entry present.",
-      "role": LoginsInfo.role,
-      "flag": "1"
-		});
-	})
-	.catch(err => {
-    return res.status(404).send({
-      "message": "No one is registered with this mobile number."
-    });
-	});
-
 }
