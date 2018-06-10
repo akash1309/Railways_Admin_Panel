@@ -66,4 +66,5 @@ module.exports = function(app, db) {
 
   app.post('/signUp',signUp.update);
   app.get('/validate/:mobile',validation.validate);
+
 }
