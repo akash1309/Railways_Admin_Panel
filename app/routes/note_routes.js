@@ -3,6 +3,7 @@ const ceeSignup = require('./../controllers/cee/post/ceeSignup');
 
 const signUp = require('./../controllers/logins/signUp');
 const validation = require('./../controllers/logins/validation');
+const login = require('./../controllers/logins/login');
 
 const dyceeAdd = require('./../controllers/dycee/post/dyceeAdd');
 const getAllDyCee = require('./../controllers/dycee/get/getAllDyCee');
@@ -66,5 +67,5 @@ module.exports = function(app, db) {
 
   app.post('/signUp',signUp.update);
   app.get('/validate/:mobile',validation.validate);
-
+  app.post('/login',login.loginfunc);
 }
