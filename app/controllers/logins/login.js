@@ -1,6 +1,6 @@
 const { Logins } = require('./../../models/Schema.js');
 
-exports.login = (req,res) => {
+exports.loginfunc = (req,res) => {
 
 	Logins.findOne({mobile : req.body.mobile, password : req.body.password})
 	.then(LoginsInfo => {
@@ -13,7 +13,7 @@ exports.login = (req,res) => {
 	})
 	.catch(err => {
     return res.status(404).send({
-      "message": "No accout exists."
+      "message": "Incorrect Password.",
       "flag": "0"
     });
 	});
