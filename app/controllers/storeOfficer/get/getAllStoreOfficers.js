@@ -1,7 +1,7 @@
 const { Logins } = require('./../../../models/Schema.js');
 
 exports.findAll = (req,res) => {
-  Logins.find({})
+  Logins.find({ role : "StoreOfficer"})
   .then(StoreOfficerInfo => {
        if(StoreOfficerInfo.length == 0) {
          return res.status(404).send(
