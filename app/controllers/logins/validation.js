@@ -8,12 +8,14 @@ exports.validate = (req,res) => {
       return res.status(200).send({
         "message": "Password field empty. Requires SignUp",
         "role": LoginsInfo.role,
+				"_id": LoginsInfo._id,
         "flag": "0"
       });
     }
     return res.status(200).send({
       "message": "Entry present.",
       "role": LoginsInfo.role,
+			"_id": LoginsInfo._id,
       "flag": "1"
 		});
 	})

@@ -19,7 +19,7 @@ module.exports = function(req, res){
       res.status(500).send('Error fetching User!');
     }
     else if(user != null){
-      res.send('Inspector already present');
+      res.status(500).send('Inspector already present');
     }
     else{
       newInspector.save(function(err, user) {
