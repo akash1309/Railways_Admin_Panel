@@ -9,7 +9,7 @@ const LoginsSchema = mongoose.Schema({
   cee_id :      String,
   dycee_id :    String,
   storeofficer_id : String,
-  role : {type:String, required: true }
+  role :        {type:String, required: true }
 },
 { collection: 'Logins' },
 {
