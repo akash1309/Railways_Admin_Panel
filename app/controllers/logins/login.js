@@ -15,7 +15,8 @@ exports.loginfunc = (req,res) => {
 	.catch(err => {
     return res.status(404).send({
       "message": "Incorrect Password.",
-      "flag": "0"
+      "flag": "0",
+			"error" : err
     });
 	});
 

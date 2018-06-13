@@ -16,15 +16,23 @@ module.exports = function(req, res){
     mobile: req.body.mobile
   },function(err, user) {
     if (err) {
-      res.status(500).send('Error fetching User!');
+      return res.status(500).send({
+        "message": "Error fetching User!",
+        "error" : err
+      });
     }
     else if(user != null){
-      res.status(500).send('Inspector already present');
+      return res.status(204).send({
+          "message": "Inspector already present!"
+      });
     }
     else{
       newInspector.save(function(err, user) {
         if (err) {
-          res.status(500).send('Error in registration!');
+          return res.status(500).send({
+            "message" : "Error in registration!",
+            "error" : err
+          });
         }
         else
           res.status(200).send(user);

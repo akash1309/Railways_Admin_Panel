@@ -19,19 +19,26 @@ module.exports = function(req, res){
     ic_id: req.body.ic_id
   },function(err, certificate) {
     if (err) {
-      res.send('Error fetching Inspection Certificate!');
+      return res.status(500).send({
+        "message" : "Error fetching Inspection Certificate!",
+        "error" : err
+      });
     }
     else if(certificate != null){
-      res.send('Inspection certificate with this id is already present');
+      return res.status(204).send({
+        "message" : "Inspection certificate with this id is already present"
+      });
     }
     else{
       newInspectionCertificate.save(function(err, certificate) {
         if (err) {
-          res.send('Error in generating inspection certificate!');
-          throw err;
+          return res.status(500).send({
+            "message" : "Error in generating inspection certificate!",
+            "error" : err
+          });
         }
         else
-          res.send(certificate);
+          res.status(200).send(certificate);
       });
     }
   });

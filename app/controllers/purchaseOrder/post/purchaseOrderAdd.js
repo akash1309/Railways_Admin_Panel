@@ -18,18 +18,26 @@ module.exports = function(req, res){
     order_number: req.body.order_number
   },function(err, order) {
     if (err) {
-      res.send('Error fetching PurchaseOrder!');
+      return res.status(500).send({
+        "message" : "Error fetching PurchaseOrder!",
+        "error" : err
+      });
     }
     else if(order != null){
-      res.send('PurchaseOrder already present');
+      return res.status(204).send({
+        "message" : "PurchaseOrder is already present!"
+      });
     }
     else{
       newPurchaseOrder.save(function(err, order) {
         if (err) {
-          res.send('Error in ordering item!');
+          return res.status(500).send({
+            "message" : "Error in ordering item!",
+            "error" :  err
+          });
         }
         else
-          res.send(order);
+          res.status(200).send(order);
       });
     }
   });

@@ -17,19 +17,26 @@ module.exports = function(req, res){
 	  corrigendum_number: req.body.corrigendum_number
   },function(err, corrigendum) {
     if (err) {
-      res.send('Error fetching Corrigendum!');
+      return res.status(500).send({
+        "message" : "Error fetching Corrigendum!",
+        "error" : err
+      });
     }
     else if(corrigendum != null){
-      res.send('Corrigendum with this id is already present');
+      return res.status(204).send({
+        "message" : "Corrigendum with this id is already present!"
+      });
     }
     else{
       newCorrigendum.save(function(err, corrigendum) {
         if (err) {
-          res.send('Error in generating corrigendum!');
-          throw err;
+          return res.statuss(500).send({
+            "message" : "Error in generating Corrigendum!",
+            "error" : err
+          });
         }
         else
-          res.send(corrigendum);
+          res.status(200).send(corrigendum);
       });
     }
   });
