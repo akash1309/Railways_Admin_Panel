@@ -13,8 +13,7 @@ exports.update = (req,res) => {
         }
         else {
           return res.status(200).send({
-            "message" : "Successfully signed up...",
-            "_id": LoginsInfo._id
+            "message" : "Successfully signed up..."
           });
 
         }
