@@ -8,6 +8,7 @@ exports.loginfunc = (req,res) => {
       return res.status(200).send({
         "message": "account exist",
         "role": LoginsInfo.role,
+				"_id": LoginsInfo._id,
         "flag": "1"
       });
 	})
