@@ -5,20 +5,16 @@ exports.findAll = (req,res) => {
 	.then(CorrigendumInfo => {
 		if(CorrigendumInfo.length == 0) {
             return res.status(404).send({
-                message: "No Corrigendum found"
+                "message" : "No Corrigendum found!"
             });
         }
-		res.send(CorrigendumInfo);
+		res.status(200).send(CorrigendumInfo);
 	})
 	.catch(err => {
-		if(err.kind == 'ObjectId') {
-            return res.status(404).send({
-                message: "No Corrigendum found"
-            });
-        }
 
 		return res.status(500).send({
-			message: "Some error occurred while getting Corrigendum."
+			"message": "Error in fetching Corrigendum!",
+			"error" : err
 		});
 
 	});

@@ -1,4 +1,4 @@
 
 module.exports = function(req, res){
-  res.send("Welcome to CWL Railways");
+  res.status(200).send("Welcome to CWL Railways");
 }

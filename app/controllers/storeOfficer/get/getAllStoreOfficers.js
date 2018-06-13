@@ -6,7 +6,7 @@ exports.findAll = (req,res) => {
        if(StoreOfficerInfo.length == 0) {
          return res.status(404).send(
            {
-             message : "No StoreOfficer found."
+             "message" : "No StoreOfficer found."
            }
          );
        }
@@ -15,15 +15,10 @@ exports.findAll = (req,res) => {
 
   })
   .catch(err => {
-      if (err.kind =='ObjectId'){
-          return res.status(404).send(
-            {
-              message : "No StoreOfficer found."
-            }
-          );
-      }
+
      return res.status(500).send({
-       message : "Error occured while fetching storeofficer info"
+       "message" : "Error occured while fetching storeofficer info",
+       "error" :  err
      });
 
   });
