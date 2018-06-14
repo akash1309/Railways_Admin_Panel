@@ -1,6 +1,7 @@
 const { Logins } = require('./../../../models/Schema.js');
 
 exports.findAll = (req,res) => {
+
 	Logins.find({ role : "DyCEE"})
 	.then(DyCEEInfo => {
 		if(DyCEEInfo.length == 0) {
