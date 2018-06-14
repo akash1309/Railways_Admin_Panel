@@ -8,6 +8,8 @@ const login = require('./../controllers/logins/login');
 const dyceeAdd = require('./../controllers/dycee/post/dyceeAdd');
 const getAllDyCee = require('./../controllers/dycee/get/getAllDyCee');
 
+const getUser = require('./../controllers/getUser');
+
 const inspectorAdd = require('./../controllers/inspector/post/inspectorAdd');
 const getAllInspectors = require('./../controllers/inspector/get/getAllInspectors');
 
@@ -32,11 +34,15 @@ const irStatus = require('./../controllers/inspectionReport/inspectionReportStat
 
 const initialResponse = require('./../controllers/initialResponse');
 
+const updateInfo = require('./../controllers/logins/updateInfo');
+
 module.exports = function(app, db) {
   app.post('/cee/signup', ceeSignup);
 
   app.post('/dycee/add',dyceeAdd);
   app.get('/dycee/all',getAllDyCee.findAll);
+
+  app.get('/user/:_id',getUser.findOne);
 
   app.post('/inspector/add', inspectorAdd);
   app.get('/inspector/all/:dycee_id',getAllInspectors.findSome);
@@ -68,4 +74,6 @@ module.exports = function(app, db) {
   app.post('/signUp',signUp.update);
   app.get('/validate/:mobile',validation.validate);
   app.post('/login',login.loginfunc);
+
+  app.post('/updateinfo',updateInfo.updateUser);
 }
