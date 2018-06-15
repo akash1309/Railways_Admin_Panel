@@ -25,7 +25,8 @@ const getPurchaseOrder = require('./../controllers/purchaseOrder/get/getPurchase
 const icGenerate = require('./../controllers/inspectionCertificate/post/icGenerate');
 const showIC = require('./../controllers/inspectionCertificate/get/showIC');
 
-const showItems = require('./../controllers/showItems');
+const showItems = require('./../controllers/items/get/showItems');
+const itemAdd = require('./../controllers/items/post/additem');
 
 const corrigendumGenerate = require('./../controllers/corrigendum/post/corrigendumGenerate');
 const showCorrigendum = require('./../controllers/corrigendum/get/showCorrigendum');
@@ -71,6 +72,7 @@ module.exports = function(app, db) {
   app.get('/',initialResponse);
 
   app.get('/showItems',showItems.findAll);
+  app.post('/items/add',itemAdd);
 
   app.post('/signUp',signUp.update);
   app.get('/validate/:mobile',validation.validate);

@@ -1,4 +1,4 @@
-const { Items} = require('./../models/Schema.js');
+const { Items} = require('./../../../models/Schema.js');
 
 exports.findAll = (req,res) => {
 	Items.find()

@@ -62,7 +62,8 @@ const PurchaseOrderSchema= mongoose.Schema({
 
 
 const ItemSchema= mongoose.Schema({
-  name      :    String,
+  model_number : {type:String,required:true},
+  name      :    {type :String, required : true},
   quantity  :    { type: String, required:true }
 
 },
