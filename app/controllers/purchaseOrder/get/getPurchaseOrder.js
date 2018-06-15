@@ -20,3 +20,23 @@ exports.findOne = (req,res) => {
 		});
 	});
 }
+
+exports.findAll = (req,res) => {
+	PurchaseOrder.find()
+	.then(purchaseOrderInfo => {
+		if(purchaseOrderInfo.length == 0) {
+            return res.status(404).send({
+                "message": "No purchase order found!"
+            });
+        }
+		res.status(200).send(purchaseOrderInfo);
+	})
+	.catch(err => {
+
+		return res.status(500).send({
+			"message": "Some error occurred while getting all purchase orders!",
+			"error" : err
+		});
+
+	});
+}

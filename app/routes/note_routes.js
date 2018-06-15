@@ -53,6 +53,7 @@ module.exports = function(app, db) {
 
   app.post('/purchaseorder/add', purchaseOrderAdd);
   app.get('/order/get/:order_number',getPurchaseOrder.findOne);
+  app.get('/purchaseorder/all',getPurchaseOrder.findAll)
 
   app.post('/vendor/add',vendorAdd);
   app.get('/vendor/all',getAllVendors.findAll);
