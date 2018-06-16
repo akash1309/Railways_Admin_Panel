@@ -9,7 +9,7 @@ const LoginsSchema = mongoose.Schema({
   cee_id :      String,
   dycee_id :    String,
   storeofficer_id : String,
-  role : {type:String, required: true }
+  role :        {type:String, required: true }
 },
 { collection: 'Logins' },
 {
@@ -62,7 +62,8 @@ const PurchaseOrderSchema= mongoose.Schema({
 
 
 const ItemSchema= mongoose.Schema({
-  name      :    String,
+  model_number : {type:String,required:true},
+  name      :    {type :String, required : true},
   quantity  :    { type: String, required:true }
 
 },
