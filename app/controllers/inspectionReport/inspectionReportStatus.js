@@ -62,3 +62,24 @@ exports.getIrStatus = (req,res) => {
 
 	});
 }
+
+exports.findAll = (req,res) => {
+
+	InspectionReport.find()
+	.then(irInfo => {
+		if(irInfo.length == 0){
+			return res.status(404).send({
+				"message" : "No Inspection Report found"
+			});
+		}
+		res.status(200).send(irInfo);
+	})
+	.catch(err => {
+
+		return res.status(500).send({
+			"message" : "Some error occured while extracting Inspection Report",
+      "error" : err
+		});
+
+	});
+}

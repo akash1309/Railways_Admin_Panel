@@ -67,6 +67,7 @@ module.exports = function(app, db) {
 
   app.post('/irStatus/set',irStatus.setIrStatus);
   app.get('/irStatus/get/:order_number/:ic_id',irStatus.getIrStatus);
+  app.get('/showIR',irStatus.findAll);
 
   app.get('/start',initialResponse);
   app.get('/',initialResponse);

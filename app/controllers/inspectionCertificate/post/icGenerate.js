@@ -7,10 +7,10 @@ module.exports = function(req, res){
 	  order_number :      req.body.order_number,
 	  quantity_offered:   req.body.quantity_offered,
 	  quantity_approved:  req.body.quantity_approved,
-	  location :          req.body.location,
+	  location_of_seal :  req.body.location_of_seal,
 	  ic_id:              req.body.ic_id,
 	  inspection_date :   req.body.inspection_date,
-	  ic_signed_on :	  req.body.ic_signed_on,
+	  ic_signed_on :	    req.body.ic_signed_on,
 	  inspector_name :    req.body.inspector_name,
 	  inspector_mobile:	  req.body.inspector_mobile
   });
