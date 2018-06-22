@@ -82,7 +82,7 @@ const InspectionCertificateSchema= mongoose.Schema({
   quantity_approved: { type: String, required:true },
  // vendor_info:        VendorInfoSchema,
 //  tender_info:        TenderInfoSchema,
-  location :          { type: String, required:true },
+  location_of_seal : { type: String, required:true },
   ic_id:              { type: String, required:true },
   inspection_date :   { type: String, required:true },
   ic_signed_on :	  {type: String, required:true},
@@ -98,14 +98,11 @@ const CorrigendumSchema= mongoose.Schema({
 	corrigendum_number : {type: String, required:true },
     order_number :   	 { type: String, required:true },
     order_date : 		 {type:String, required:true },
-//  issuing_date:      	 { type: String , required:true},
-//  storeofficer_id :  	 { type: String, required:true },
     ic_id:            	 { type: String, required:true },
     ic_date :  			 { type: String, required:true },
     inspector_name :  	 { type: String, required:true },
     inspector_mobile :	 { type:String, required:true },
     dycee_id : 				String
-//  ic:              		InspectionCertificateSchema
 },
 { collection: 'Corrigendum' },
 {
