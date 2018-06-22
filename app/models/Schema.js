@@ -74,14 +74,8 @@ const ItemSchema= mongoose.Schema({
 
 const InspectionCertificateSchema= mongoose.Schema({
   order_number :      { type: String, required:true },
-//  mobile:             { type: String, required:true },
- // password :          { type: String, required:true },
-//  storeofficer_id :   { type: String, required:true },
-//  item_details :      ICItemInfoSchema,
   quantity_offered:  { type: String, required:true },
   quantity_approved: { type: String, required:true },
- // vendor_info:        VendorInfoSchema,
-//  tender_info:        TenderInfoSchema,
   location_of_seal : { type: String, required:true },
   ic_id:              { type: String, required:true },
   inspection_date :   { type: String, required:true },
@@ -112,7 +106,6 @@ timestamps: true
 const InspectionReportSchema= mongoose.Schema({
   order_number : { type: String, required:true },
   ic_id:         { type: String, required:true },
-  //item_details : ICItemInfoSchema,
   status:        { type: String, required:true }
 },
 { collection: 'InspectionReport' },
@@ -120,11 +113,6 @@ const InspectionReportSchema= mongoose.Schema({
 timestamps: true
 });
 
-/*var CEE = mongoose.model('CEE', CEESchema);
-var DyCEE = mongoose.model('DyCEE', DyCEESchema);
-var Inspector = mongoose.model('Inspector', InspectorSchema);
-var StoreOfficer = mongoose.model('StoreOfficer', StoreOfficerSchema);
-var Vendor = mongoose.model('Vendor', VendorSchema);*/
 var Logins = mongoose.model('Logins', LoginsSchema);
 var Items = mongoose.model('Items',ItemSchema);
 var PurchaseOrder = mongoose.model('PurchaseOrder',PurchaseOrderSchema);
@@ -132,11 +120,6 @@ var InspectionCertificate = mongoose.model('InspectionCertificate',InspectionCer
 var Corrigendum = mongoose.model('Corrigendum', CorrigendumSchema);
 var InspectionReport = mongoose.model('InspectionReport', InspectionReportSchema);
 module.exports = {
-/*  CEE:CEE,
-  DyCEE:DyCEE,
-  Inspector:Inspector,
-  StoreOfficer:StoreOfficer,
-  Vendor:Vendor,*/
   Logins:Logins,
   Items:Items,
   PurchaseOrder:PurchaseOrder,

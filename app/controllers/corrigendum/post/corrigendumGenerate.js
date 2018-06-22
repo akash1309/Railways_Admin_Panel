@@ -5,10 +5,10 @@ module.exports = function(req, res){
 
   var newCorrigendum = Corrigendum({
 	  	corrigendum_number : req.body.corrigendum_number,
-	    order_number :   	 req.body.order_number,
-	    order_date : 		 req.body.order_date,
+	    order_number :   	   req.body.order_number,
+	    order_date : 		     req.body.order_date,
 	    ic_id:            	 req.body.ic_id,
-	    ic_date :  			 req.body.ic_date,
+	    ic_date :  			     req.body.ic_date,
 	    inspector_name :  	 req.body.inspector_name,
 	    inspector_mobile :	 req.body.inspector_mobile
   });
