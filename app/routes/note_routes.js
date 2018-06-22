@@ -35,35 +35,50 @@ const irStatus = require('./../controllers/inspectionReport/inspectionReportStat
 
 const initialResponse = require('./../controllers/initialResponse');
 
-const updateInfo = require('./../controllers/logins/updateInfo');
+const updateInfo =  require('./../controllers/logins/updateInfo');
+const deleteInfo =  require('./../controllers/logins/deleteInfo');
+const deletePO   =  require('./../controllers/logins/deletePO');
+const deleteItem   =  require('./../controllers/logins/deleteItem');
+
 
 module.exports = function(app, db) {
   app.post('/cee/signup', ceeSignup);
 
   app.post('/dycee/add',dyceeAdd);
   app.get('/dycee/all',getAllDyCee.findAll);
+  app.get('/dycee/one',getAllDyCee.findOne);
+  app.get('/dycee/some',getAllDyCee.findSome);
 
   app.get('/user/:_id',getUser.findOne);
 
   app.post('/inspector/add', inspectorAdd);
-  app.get('/inspector/all/:dycee_id',getAllInspectors.findSome);
+  app.get('/inspector/some',getAllInspectors.findSome);
   app.get('/inspector/all',getAllInspectors.findAll);
+  app.get('/inspector/one',getAllInspectors.findOne);
+
 
   app.post('/storeofficer/add', storeOfficerAdd);
   app.get('/storeofficer/all',getAllStoreOfficers.findAll);
+  app.get('/storeofficer/one',getAllStoreOfficers.findOne);
+  app.get('/storeofficer/some',getAllStoreOfficers.findSome);
 
   app.post('/purchaseorder/add', purchaseOrderAdd);
-  app.get('/order/get/:order_number',getPurchaseOrder.findOne);
+  app.get('/order/get',getPurchaseOrder.findOne);
   app.get('/purchaseorder/all',getPurchaseOrder.findAll)
 
   app.post('/vendor/add',vendorAdd);
   app.get('/vendor/all',getAllVendors.findAll);
+  app.get('/vendor/one',getAllVendors.findOne);
+  app.get('/vendor/some',getAllVendors.findSome);
 
   app.post('/ic/generate',icGenerate);
-  app.get('/showIC',showIC.findAll);
+  app.get('/showIC/all',showIC.findAll);
+  app.get('/showIC/one',showIC.findOne);
+
 
   app.post('/corrigendum/generate',corrigendumGenerate);
-  app.get('/corrigendum/showCorrigendum',showCorrigendum.findAll);
+  app.get('/corrigendum/showCorrigendum/all',showCorrigendum.findAll);
+  app.get('/corrigendum/showCorrigendum/one',showCorrigendum.findOne);
 
   app.post('/irStatus/set',irStatus.setIrStatus);
   app.get('/irStatus/get/:order_number/:ic_id',irStatus.getIrStatus);
@@ -72,12 +87,17 @@ module.exports = function(app, db) {
   app.get('/start',initialResponse);
   app.get('/',initialResponse);
 
-  app.get('/showItems',showItems.findAll);
+  app.get('/showItems/all',showItems.findAll);
   app.post('/items/add',itemAdd);
+  app.get('/showItems/one',showItems.findOne);
 
   app.post('/signUp',signUp.update);
   app.get('/validate/:mobile',validation.validate);
   app.post('/login',login.loginfunc);
 
   app.post('/updateinfo',updateInfo.updateUser);
+  app.post('/deleteInfo',deleteInfo.delUser);
+  app.post('/deletePO',deletePO.delPO);
+  app.post('/deleteItem',deleteItem.delItems);
+
 }
