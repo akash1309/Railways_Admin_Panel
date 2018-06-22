@@ -35,7 +35,11 @@ const irStatus = require('./../controllers/inspectionReport/inspectionReportStat
 
 const initialResponse = require('./../controllers/initialResponse');
 
-const updateInfo = require('./../controllers/logins/updateInfo');
+const updateInfo =  require('./../controllers/logins/updateInfo');
+const deleteInfo =  require('./../controllers/logins/deleteInfo');
+const deletePO   =  require('./../controllers/logins/deletePO');
+const deleteItem   =  require('./../controllers/logins/deleteItem');
+
 
 module.exports = function(app, db) {
   app.post('/cee/signup', ceeSignup);
@@ -92,4 +96,8 @@ module.exports = function(app, db) {
   app.post('/login',login.loginfunc);
 
   app.post('/updateinfo',updateInfo.updateUser);
+  app.post('/deleteInfo',deleteInfo.delUser);
+  app.post('/deletePO',deletePO.delPO);
+  app.post('/deleteItem',deleteItem.delItems);
+
 }
