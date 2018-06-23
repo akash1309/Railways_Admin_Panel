@@ -2,7 +2,7 @@ const express            = require('express');
 const http               = require('http');
 const mongoose           = require('mongoose');
 const bodyParser         = require('body-parser');
-const db                 = require('./config/db');
+const config             = require('./config/appConfig');
 const app                = express();
 var cors                 = require('cors');
 
@@ -14,7 +14,7 @@ app.use(cors({origin: '*'}));
 
 const port = 8000;
 // MongoDB Connection using mongoose
-mongoose.connect(db.url, (err, database) => {
+mongoose.connect(config.dbUrl, (err, database) => {
   if (err) return console.log(err)
 
   require('./app/routes')(app, database);
