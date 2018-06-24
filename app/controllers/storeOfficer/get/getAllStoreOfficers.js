@@ -1,5 +1,21 @@
 const { Logins } = require('./../../../models/Schema.js');
 
+
+exports.findByDyceeId = (req,res) => {
+
+	Logins.find({dycee_id: req.params.dyceeId, role: "StoreOfficer"})
+	.then(StoreOfficerInfo => {
+		res.status(200).send(StoreOfficerInfo);
+	})
+	.catch(err => {
+		return res.status(500).send({
+			"message": "Some error occurred while getting all StoreOfficer!",
+			"error" : err
+		});
+	});
+	
+}
+
 exports.findSome = (req,res) => {
 
 	Logins.find({location : req.params.location, role: "StoreOfficer"})
