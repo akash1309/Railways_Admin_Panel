@@ -6,6 +6,7 @@ const LoginsSchema = mongoose.Schema({
   mobile:       { type: String, required: true  },
 	password:     String,
 	location:     String,
+  address:      String,
   cee_id :      String,
   dycee_id :    String,
   storeofficer_id : String,
