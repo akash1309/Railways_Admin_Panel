@@ -9,6 +9,7 @@ const LoginsSchema = mongoose.Schema({
   cee_id :      String,
   dycee_id :    String,
   storeofficer_id : String,
+  vendor_code:  String,
   role :        {type:String, required: true }
 },
 { collection: 'Logins' },
@@ -51,9 +52,10 @@ const PurchaseOrderSchema= mongoose.Schema({
     itemdetails :       ItemInfoSchema,
     vendor_info:        VendorInfoSchema,
     tender_info:        TenderInfoSchema,
-    offer_no:		      	{ type: String, required:true },
-    offer_date:		    	{ type:String, required:true },
+    offer_no:			{ type: String, required:true },
+    offer_date:			{ type:String, required:true },
     ic_id:              String,
+    status:         { type:String, required:true },
 },
 { collection: 'PurchaseOrder' },
 {

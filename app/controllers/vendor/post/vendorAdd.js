@@ -4,11 +4,13 @@ const { Logins } = require('./../../../models/Schema.js');
 module.exports = function(req, res){
 
   var newVendor = Logins({
+    vendor_code:       req.body.vendor_code,
     email:             req.body.email,
     name:              req.body.name,
     mobile:            req.body.mobile,
     storeofficer_id:   req.body.storeofficer_id,
     role:              req.body.role,
+    address:           req.body.address,
     location:          req.body.location
   });
 

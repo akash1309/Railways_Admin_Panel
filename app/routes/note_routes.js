@@ -69,11 +69,13 @@ module.exports = function(app, db) {
   app.get('/purchaseorder/all',getPurchaseOrder.findAll);
   app.post('/updatePurchaseOrder',updatePOInfo.updatePO);
   app.get('/order/get/:code',vendorPO.findforVendor);
+  app.get('/purchaseorder/:storeofficer_id',getPurchaseOrder.findbyStoreOfficer);
 
   app.post('/vendor/add',vendorAdd);
   app.get('/vendor/all',getAllVendors.findAll);
   app.get('/vendor/one',getAllVendors.findOne);
   app.get('/vendor/some',getAllVendors.findSome);
+  app.get('/vendor/:storeofficer_id',getAllVendors.findbyStoreOfficer);
 
   app.post('/ic/generate',icGenerate);
   app.get('/showIC/all',showIC.findAll);
