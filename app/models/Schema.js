@@ -64,6 +64,19 @@ const PurchaseOrderSchema= mongoose.Schema({
   timestamps: true
 });
 
+const VisitSchema = mongoose.Schema({
+  inspector_name:         { type: String, required: true  },
+	inspector_email:        { type: String, required: true  },
+  inspector_mobile:       { type: String, required: true  },
+	inspector_location:     { type: String, required: true  },
+  order_number :          { type: String, required: true  },
+  date :                  { type: String, required: true  },
+  time :                  { type: String, required: true  }
+},
+{ collection: 'Visit' },
+{
+  timestamps: true
+});
 
 const ItemSchema= mongoose.Schema({
   model_number : {type:String,required:true},
@@ -123,11 +136,14 @@ var PurchaseOrder = mongoose.model('PurchaseOrder',PurchaseOrderSchema);
 var InspectionCertificate = mongoose.model('InspectionCertificate',InspectionCertificateSchema);
 var Corrigendum = mongoose.model('Corrigendum', CorrigendumSchema);
 var InspectionReport = mongoose.model('InspectionReport', InspectionReportSchema);
+var Visit = mongoose.model('Visit', VisitSchema);
+
 module.exports = {
   Logins:Logins,
   Items:Items,
   PurchaseOrder:PurchaseOrder,
   InspectionCertificate:InspectionCertificate,
   Corrigendum:Corrigendum,
-  InspectionReport:InspectionReport
+  InspectionReport:InspectionReport,
+  Visit: Visit
 };
