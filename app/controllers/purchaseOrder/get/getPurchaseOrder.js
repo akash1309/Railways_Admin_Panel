@@ -2,14 +2,9 @@ const { PurchaseOrder } = require('./../../../models/Schema.js');
 
 exports.findforVendor = (req,res) => {
 
-	PurchaseOrder.find({_id : req.params._id})
+	PurchaseOrder.find({'vendor_info.code' : req.params.code})
 	.then( purchaseOrderInfo => {
 
-		if(purchaseOrderInfo.length == 0) {
-			return res.status(404).send({
-				"message" : "No purchase order found with code "+req.params.code
-			});
-		}
 		res.status(200).send(purchaseOrderInfo);
 	})
 	.catch(err => {
@@ -66,12 +61,6 @@ exports.findbyStoreOfficer = (req,res) => {
 
 	PurchaseOrder.find({storeofficer_id : req.params.storeofficer_id})
 	.then( purchaseOrderInfo => {
-
-		if(purchaseOrderInfo.length == 0) {
-			return res.status(404).send({
-				"message" : "No purchase order found "
-			});
-		}
 		res.status(200).send(purchaseOrderInfo);
 	})
 	.catch(err => {

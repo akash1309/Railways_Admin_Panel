@@ -22,7 +22,6 @@ const getAllVendors = require('./../controllers/vendor/get/getAllVendors');
 const purchaseOrderAdd = require('./../controllers/purchaseOrder/post/purchaseOrderAdd');
 const getPurchaseOrder = require('./../controllers/purchaseOrder/get/getPurchaseOrder');
 const updatePOInfo = require('./../controllers/purchaseOrder/post/updatePO');
-const vendorPO = require('./../controllers/purchaseOrder/get/getPurchaseOrder');
 
 const icGenerate = require('./../controllers/inspectionCertificate/post/icGenerate');
 const showIC = require('./../controllers/inspectionCertificate/get/showIC');
@@ -67,11 +66,11 @@ module.exports = function(app, db) {
   app.get('/storeofficer/some',getAllStoreOfficers.findSome);
 
   app.post('/purchaseorder/add', purchaseOrderAdd);
-  app.get('/order/get/:order_number',getPurchaseOrder.findOne);
+  app.get('/purchaseorder/:order_number',getPurchaseOrder.findOne);
   app.get('/purchaseorder/all',getPurchaseOrder.findAll);
   app.post('/updatePurchaseOrder',updatePOInfo.updatePO);
-  app.get('/order/get/:code',vendorPO.findforVendor);
-  app.get('/purchaseorder/:storeofficer_id', secure.hasStoreOfficerRole, getPurchaseOrder.findbyStoreOfficer);
+  app.get('/purchaseorder/vendor/:code',getPurchaseOrder.findforVendor);
+  app.get('/purchaseorder/storeofficer/:storeofficer_id', secure.hasStoreOfficerRole, getPurchaseOrder.findbyStoreOfficer);
 
   app.post('/vendor/add',vendorAdd);
   app.get('/vendor/all',getAllVendors.findAll);

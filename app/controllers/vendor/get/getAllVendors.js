@@ -67,12 +67,6 @@ exports.findAll = (req,res) => {
 exports.findbyStoreOfficer = (req,res) => {
   Logins.find({ storeofficer_id : req.params.storeofficer_id})
   .then(vendorInfo => {
-       if(vendorInfo.length == 0) {
-         return res.status(404).send(
-           {
-             "message" : "No Vendor found!"
-           });
-       }
          res.status(200).send(vendorInfo);
   })
   .catch(err => {
