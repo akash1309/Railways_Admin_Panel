@@ -1,5 +1,21 @@
 const { Logins } = require('./../../../models/Schema.js');
 
+
+exports.findByDyceeId = (req,res) => {
+
+	Logins.find({dycee_id: req.params.dyceeId, role: "Inspector"})
+	.then(inspectorInfo => {
+		res.status(200).send(inspectorInfo);
+	})
+	.catch(err => {
+		return res.status(500).send({
+			"message": "Some error occurred while getting InspectorInfo!",
+			"error" : err
+		});
+	});
+
+}
+
 exports.findOne = (req,res) => {
 
 	Logins.find({mobile : req.params.mobile, role: "Inspector"})

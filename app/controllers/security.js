@@ -92,3 +92,22 @@ exports.hasStoreOfficerRole = (req,res,next) => {
 		});
 	});
 }
+
+
+exports.hasStoreOfficerOrDyceeRole = (req,res,next) => {
+	Logins.findOne({ _id : req.headers.security_token})
+	.then(storeOfficerInfo => {
+    if(storeOfficerInfo && (storeOfficerInfo.role == 'StoreOfficer' || storeOfficerInfo.role == 'DyCEE'))
+		next();
+    else{
+      return res.status(500).send({
+  			"message": "Invalid Token"
+  		});
+    }
+	})
+	.catch(err => {
+		return res.status(500).send({
+			"message": "Invalid Token"
+		});
+	});
+}

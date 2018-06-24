@@ -61,18 +61,19 @@ module.exports = function(app, db) {
   app.get('/inspector/some',getAllInspectors.findSome);
   app.get('/inspector/all',getAllInspectors.findAll);
   app.get('/inspector/one',getAllInspectors.findOne);
+  app.get('/inspector/:dyceeId',getAllInspectors.findByDyceeId);
 
   app.post('/storeofficer/add', storeOfficerAdd);
   app.get('/storeofficer/all',getAllStoreOfficers.findAll);
   app.get('/storeofficer/one',getAllStoreOfficers.findOne);
-  app.get('/storeofficer/some',getAllStoreOfficers.findSome);
+  app.get('/storeofficer/:dyceeId',getAllStoreOfficers.findByDyceeId);
 
   app.post('/purchaseorder/add', purchaseOrderAdd);
   app.get('/purchaseorder/:order_number',getPurchaseOrder.findOne);
   app.get('/purchaseorder/all',getPurchaseOrder.findAll);
   app.post('/updatePurchaseOrder',updatePOInfo.updatePO);
   app.get('/purchaseorder/vendor/:code',getPurchaseOrder.findforVendor);
-  app.get('/purchaseorder/storeofficer/:storeofficer_id', secure.hasStoreOfficerRole, getPurchaseOrder.findbyStoreOfficer);
+  app.get('/purchaseorder/storeofficer/:storeofficer_id', secure.hasStoreOfficerOrDyceeRole, getPurchaseOrder.findbyStoreOfficer);
   app.get('/purchaseorder/inspector/:inspector_id', getPurchaseOrder.findforInspector);
 
   app.post('/vendor/add',vendorAdd);
@@ -109,6 +110,6 @@ module.exports = function(app, db) {
   app.post('/deleteItem',deleteItem.delItems);
 
   app.get('/start',initialResponse);
-  app.get('/',secure.hasDyceeRole,initialResponse);
+  app.get('/',initialResponse);
 
 }
