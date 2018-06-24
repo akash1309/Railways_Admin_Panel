@@ -16,6 +16,22 @@ exports.findforVendor = (req,res) => {
 	});
 }
 
+exports.findforInspector = (req,res) => {
+
+	PurchaseOrder.find({'inspector_id' : req.params.inspector_id})
+	.then( purchaseOrderInfo => {
+
+		res.status(200).send(purchaseOrderInfo);
+	})
+	.catch(err => {
+
+		return res.status(500).send({
+			"message" : "Some error occured while extracting purchase order with inspector id  "+req.params.inspector_id,
+			"error" : err
+		});
+	});
+}
+
 exports.findOne = (req,res) => {
 
 	PurchaseOrder.findOne({order_number : req.params.order_number})

@@ -71,6 +71,7 @@ module.exports = function(app, db) {
   app.post('/updatePurchaseOrder',updatePOInfo.updatePO);
   app.get('/purchaseorder/vendor/:code',getPurchaseOrder.findforVendor);
   app.get('/purchaseorder/storeofficer/:storeofficer_id', secure.hasStoreOfficerRole, getPurchaseOrder.findbyStoreOfficer);
+  app.get('/purchaseorder/inspector/:inspector_id', getPurchaseOrder.findforInspector);
 
   app.post('/vendor/add',vendorAdd);
   app.get('/vendor/all',getAllVendors.findAll);
