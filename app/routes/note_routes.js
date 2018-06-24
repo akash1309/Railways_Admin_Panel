@@ -41,6 +41,8 @@ const deleteInfo =  require('./../controllers/logins/deleteInfo');
 const deletePO   =  require('./../controllers/logins/deletePO');
 const deleteItem   =  require('./../controllers/logins/deleteItem');
 
+const visitinfo = require('./../controllers/visit/post/visitadd');
+
 // Security Functions Implementation
 
 const secure = require('./../controllers/security');
@@ -94,6 +96,8 @@ module.exports = function(app, db) {
   app.get('/showItems/all',showItems.findAll);
   app.post('/items/add',itemAdd);
   app.get('/showItems/one',showItems.findOne);
+
+  app.post('/visit/add',visitinfo);
 
   app.post('/signUp',signUp.update);
   app.get('/validate/:mobile',validation.validate);
