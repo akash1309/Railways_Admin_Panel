@@ -31,16 +31,7 @@ exports.updatePO = (req,res) => {
 
 function updatePO(req,res,order_number)
 {
-  var x = {
-    order_number :   req.body.order_number,
-    order_date :     req.body.order_date,
-    itemdetails :    req.body.itemdetails ,
-    vendor_info :    req.body.vendor_info,
-    tender_info :    req.body.tender_info,
-    offer_no :       req.body.offer_no,
-    offer_date :     req.body.offer_date,
-    storeofficer_id :req.body.storeofficer_id
-   };
+  var x = req.body;
 
     PurchaseOrder.update({ order_number : req.body.order_number },
       x,

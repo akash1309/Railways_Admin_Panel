@@ -9,14 +9,17 @@ exports.validate = (req,res) => {
         "message": "Password field empty. Requires SignUp",
         "role": LoginsInfo.role,
 				"_id": LoginsInfo._id,
-        "flag": "0"
+        "flag": "0",
+				"code": LoginsInfo.vendor_code
+
       });
     }
     return res.status(200).send({
       "message": "Entry present.",
       "role": LoginsInfo.role,
 			"_id": LoginsInfo._id,
-      "flag": "1"
+      "flag": "1",
+			"code": LoginsInfo.vendor_code
 		});
 	})
 	.catch(err => {
