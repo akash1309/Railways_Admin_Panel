@@ -65,13 +65,13 @@ const PurchaseOrderSchema= mongoose.Schema({
 });
 
 const VisitSchema = mongoose.Schema({
-  inspector_name:         { type: String, required: true  },
-	inspector_email:        { type: String, required: true  },
-  inspector_mobile:       { type: String, required: true  },
-	inspector_location:     { type: String, required: true  },
-  order_number :          { type: String, required: true  },
-  date :                  { type: String, required: true  },
-  time :                  { type: String, required: true  }
+  name:         { type: String, required: true  },
+	email:        { type: String, required: true  },
+  mobile:       { type: String, required: true  },
+	location:     { type: String, required: true  },
+  order_number: { type: String, required: true  },
+  date :        { type: String, required: true  },
+  time :        { type: String, required: true  }
 },
 { collection: 'Visit' },
 {
