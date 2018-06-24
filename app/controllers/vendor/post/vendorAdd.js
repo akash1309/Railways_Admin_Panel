@@ -10,8 +10,7 @@ module.exports = function(req, res){
     mobile:            req.body.mobile,
     storeofficer_id:   req.body.storeofficer_id,
     role:              req.body.role,
-    address:           req.body.address,
-    location:          req.body.location
+    address:           req.body.address
   });
 
   Logins.findOne({
