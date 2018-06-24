@@ -42,6 +42,9 @@ const deleteInfo =  require('./../controllers/logins/deleteInfo');
 const deletePO   =  require('./../controllers/logins/deletePO');
 const deleteItem   =  require('./../controllers/logins/deleteItem');
 
+// Security Functions Implementation
+
+const secure = require('./../controllers/security');
 
 module.exports = function(app, db) {
   app.post('/cee/signup', ceeSignup);
@@ -57,7 +60,6 @@ module.exports = function(app, db) {
   app.get('/inspector/some',getAllInspectors.findSome);
   app.get('/inspector/all',getAllInspectors.findAll);
   app.get('/inspector/one',getAllInspectors.findOne);
-
 
   app.post('/storeofficer/add', storeOfficerAdd);
   app.get('/storeofficer/all',getAllStoreOfficers.findAll);
@@ -81,7 +83,6 @@ module.exports = function(app, db) {
   app.get('/showIC/all',showIC.findAll);
   app.get('/showIC/one',showIC.findOne);
 
-
   app.post('/corrigendum/generate',corrigendumGenerate);
   app.get('/corrigendum/showCorrigendum/all',showCorrigendum.findAll);
   app.get('/corrigendum/showCorrigendum/one',showCorrigendum.findOne);
@@ -89,9 +90,6 @@ module.exports = function(app, db) {
   app.post('/irStatus/set',irStatus.setIrStatus);
   app.get('/irStatus/get/:order_number/:ic_id',irStatus.getIrStatus);
   app.get('/showIR',irStatus.findAll);
-
-  app.get('/start',initialResponse);
-  app.get('/',initialResponse);
 
   app.get('/showItems/all',showItems.findAll);
   app.post('/items/add',itemAdd);
@@ -105,5 +103,8 @@ module.exports = function(app, db) {
   app.post('/deleteInfo',deleteInfo.delUser);
   app.post('/deletePO',deletePO.delPO);
   app.post('/deleteItem',deleteItem.delItems);
+
+  app.get('/start',initialResponse);
+  app.get('/',secure.hasDyceeRole,initialResponse);
 
 }
