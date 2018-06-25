@@ -76,6 +76,7 @@ exports.findAll = (req,res) => {
 exports.findbyStoreOfficer = (req,res) => {
 
 	PurchaseOrder.find({storeofficer_id : req.params.storeofficer_id})
+	.populate('inspected_by')
 	.then( purchaseOrderInfo => {
 		res.status(200).send(purchaseOrderInfo);
 	})
