@@ -65,7 +65,7 @@ const PurchaseOrderSchema= mongoose.Schema({
 });
 
 const VisitSchema = mongoose.Schema({
-  inspector_id: { type: String, required: true },
+  inspector_id: { type: mongoose.Schema.ObjectId, ref: 'Logins' },
   order_number: { type: String, required: true },
   date :        { type: String, required: true },
   time :        { type: String, required: true },
