@@ -41,7 +41,7 @@ const deleteInfo =  require('./../controllers/logins/deleteInfo');
 const deletePO   =  require('./../controllers/logins/deletePO');
 const deleteItem   =  require('./../controllers/logins/deleteItem');
 
-const visitinfo = require('./../controllers/visit/post/visitadd');
+const addVisits = require('./../controllers/visit/post/visitadd');
 
 // Security Functions Implementation
 
@@ -69,12 +69,12 @@ module.exports = function(app, db) {
   app.get('/storeofficer/:dyceeId',getAllStoreOfficers.findByDyceeId);
 
   app.post('/purchaseorder/add', purchaseOrderAdd);
-  app.get('/purchaseorder/:order_number',getPurchaseOrder.findOne);
   app.get('/purchaseorder/all',getPurchaseOrder.findAll);
   app.post('/updatePurchaseOrder',updatePOInfo.updatePO);
+  app.get('/purchaseorder/:order_number',getPurchaseOrder.findOne);
   app.get('/purchaseorder/vendor/:code',getPurchaseOrder.findforVendor);
   app.get('/purchaseorder/storeofficer/:storeofficer_id', secure.hasStoreOfficerOrDyceeRole, getPurchaseOrder.findbyStoreOfficer);
-  app.get('/purchaseorder/inspector/:inspector_id', getPurchaseOrder.findforInspector);
+  app.get('/purchaseorder/inspector/:inspected_by', secure.hasInspectorRole, getPurchaseOrder.findforInspector);
 
   app.post('/vendor/add',vendorAdd);
   app.get('/vendor/all',getAllVendors.findAll);
@@ -98,7 +98,7 @@ module.exports = function(app, db) {
   app.post('/items/add',itemAdd);
   app.get('/showItems/one',showItems.findOne);
 
-  app.post('/visit/add',visitinfo);
+  app.post('/visit/add',addVisits);
 
   app.post('/signUp',signUp.update);
   app.get('/validate/:mobile',validation.validate);

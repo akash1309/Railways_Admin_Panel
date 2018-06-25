@@ -65,13 +65,12 @@ const PurchaseOrderSchema= mongoose.Schema({
 });
 
 const VisitSchema = mongoose.Schema({
-  name:         { type: String, required: true  },
-	email:        { type: String, required: true  },
-  mobile:       { type: String, required: true  },
-	location:     { type: String, required: true  },
-  order_number: { type: String, required: true  },
-  date :        { type: String, required: true  },
-  time :        { type: String, required: true  }
+  inspector_id: { type: String, required: true },
+  order_number: { type: String, required: true },
+  date :        { type: String, required: true },
+  time :        { type: String, required: true },
+  visit_status : String,
+  vendor_code : { type: String, required: true  }
 },
 { collection: 'Visit' },
 {
@@ -122,8 +121,8 @@ timestamps: true
 
 const InspectionReportSchema= mongoose.Schema({
   order_number : { type: String, required:true },
-  ic_id:         { type: String, required:true },
-  status:        { type: String, required:true }
+  report_status: { type: String, required:true },
+  item_status:   String
 },
 { collection: 'InspectionReport' },
 {
