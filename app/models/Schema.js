@@ -50,7 +50,7 @@ const PurchaseOrderSchema= mongoose.Schema({
     order_number:       { type: String, required:true },
     order_date:         { type: String, required:true },
     storeofficer_id :   { type: String, required:true },
-    inspector_id:       String,
+    inspected_by:       { type: mongoose.Schema.ObjectId, ref: 'Logins' },
     itemdetails :       ItemInfoSchema,
     vendor_info:        VendorInfoSchema,
     tender_info:        TenderInfoSchema,
