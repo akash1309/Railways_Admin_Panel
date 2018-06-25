@@ -54,10 +54,10 @@ const PurchaseOrderSchema= mongoose.Schema({
     itemdetails :       ItemInfoSchema,
     vendor_info:        VendorInfoSchema,
     tender_info:        TenderInfoSchema,
-    offer_no:			{ type: String, required:true },
-    offer_date:			{ type:String, required:true },
+    offer_no:		      	{ type: String, required:true },
+    offer_date:	    		{ type:String, required:true },
     ic_id:              String,
-    status:         { type:String, required:true },
+    status:             { type:String, required:true },
 },
 { collection: 'PurchaseOrder' },
 {
