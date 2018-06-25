@@ -4,13 +4,12 @@ const { Visit } = require('./../../../models/Schema.js');
 module.exports = function(req, res){
 
   var newVisit = Visit({
-    email:      req.body.email,
-    name:       req.body.name,
-    mobile:     req.body.mobile,
-    date:       req.body.date,
-    time :      req.body.time,
-    location:   req.body.location,
-    order_number : req.body.order_number
+    inspector_id:   req.body.inspector_id,
+    date:           req.body.date,
+    time :          req.body.time,
+    order_number :  req.body.order_number,
+    visit_status :  req.body.visit_status,
+    vendor_code :   req.body.vendor_code
   });
 
   Visit.findOne({
