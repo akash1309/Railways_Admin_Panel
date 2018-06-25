@@ -90,9 +90,10 @@ module.exports = function(app, db) {
   app.get('/corrigendum/showCorrigendum/all',showCorrigendum.findAll);
   app.get('/corrigendum/showCorrigendum/one',showCorrigendum.findOne);
 
-  app.post('/irStatus/set',irStatus.setIrStatus);
-  app.get('/irStatus/get/:order_number/:ic_id',irStatus.getIrStatus);
+  //app.post('/irStatus/set',irStatus.setIrStatus);
+  app.get('/irStatus/get/:order_number',irStatus.getIrStatus);
   app.get('/showIR',irStatus.findAll);
+  app.post('/generateIr',irStatus.generate);
 
   app.get('/showItems/all',showItems.findAll);
   app.post('/items/add',itemAdd);

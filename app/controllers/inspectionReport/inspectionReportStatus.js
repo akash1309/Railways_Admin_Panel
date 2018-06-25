@@ -5,13 +5,13 @@ exports.setIrStatus = (req, res) => {
 
   var newInspectionReport = InspectionReport({
 	  order_number : req.body.order_number,
-	  ic_id:         req.body.ic_id,
-	  status:        req.body.status
+	  report_status: req.body.report_status,
+	  item_status:   req.body.item_status
   });
+
 
   InspectionReport.findOne({
 	  order_number : req.body.order_number,
-	  ic_id:         req.body.ic_id
   },function(err, report) {
     if (err) {
       return res.status(500).send({
@@ -21,19 +21,7 @@ exports.setIrStatus = (req, res) => {
     }
     else if(report != null){
       return res.status(204).send({
-        "message" : "Inspection Report with this IC: "+req.body.ic_id+" and Order: "+req.body.order_number+" is already present"
-      });
-    }
-    else{
-      newInspectionReport.save(function(err, report) {
-        if (err) {
-          return res.status(500).send({
-            "message" : "Error in generating inspection report!",
-            "error" : err
-          });
-        }
-        else
-          res.status(200).send(report);
+        "message" : "Inspection Report with Order Number: "+req.body.order_number+" is already present"
       });
     }
   });
@@ -42,13 +30,12 @@ exports.setIrStatus = (req, res) => {
 exports.getIrStatus = (req,res) => {
 
 	InspectionReport.find({
-		order_number : req.params.order_number,
-		ic_id : req.params.ic_id
+		order_number : req.params.order_number
 	})
 	.then(irInfo => {
 		if(irInfo.length == 0){
 			return res.status(404).send({
-				"message" : "No Inspection Report found for order_no "+req.params.order_number+" and ic_id "+req.params.ic_id
+				"message" : "No Inspection Report found for order_no "+req.params.order_number
 			});
 		}
 		res.status(200).send(irInfo);
@@ -82,4 +69,24 @@ exports.findAll = (req,res) => {
 		});
 
 	});
+}
+
+exports.generate = (req,res) => {
+
+  var newInspectionReport = InspectionReport({
+	  order_number : req.body.order_number,
+	  report_status: req.body.report_status,
+	  item_status:   req.body.item_status
+  });
+
+  newInspectionReport.save(function(err, report) {
+    if (err) {
+      return res.status(500).send({
+        "message" : "Error in generating inspection report!",
+        "error" : err
+      });
+    }
+    else
+      res.status(200).send(report);
+  });
 }
