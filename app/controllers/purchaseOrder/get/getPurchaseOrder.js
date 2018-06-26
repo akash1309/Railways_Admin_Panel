@@ -3,6 +3,8 @@ const { PurchaseOrder } = require('./../../../models/Schema.js');
 exports.findforVendor = (req,res) => {
 
 	PurchaseOrder.find({'vendor_info.code' : req.params.code})
+	.populate('inspected_by')
+	.populate('ic_id')
 	.then( purchaseOrderInfo => {
 
 		res.status(200).send(purchaseOrderInfo);
@@ -20,6 +22,8 @@ exports.findforInspector = (req,res) => {
 
 console.log(req.params.inspected_by);
 	PurchaseOrder.find({inspected_by : req.params.inspected_by})
+	.populate('inspected_by')
+	.populate('ic_id')
 	.then( purchaseOrderInfo => {
 		res.status(200).send(purchaseOrderInfo);
 	})
@@ -56,6 +60,8 @@ exports.findOne = (req,res) => {
 exports.findAll = (req,res) => {
 
 	PurchaseOrder.find()
+	.populate('inspected_by')
+	.populate('ic_id')
 	.then(purchaseOrderInfo => {
 		if(purchaseOrderInfo.length == 0) {
             return res.status(404).send({
