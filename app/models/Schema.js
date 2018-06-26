@@ -30,6 +30,7 @@ const ItemInfoSchema= mongoose.Schema({
 
 const VendorInfoSchema= mongoose.Schema({
   code:     { type:String , required:true },
+  name:     { type:String , required:true },
   email :   { type: String, required:true },
   address : { type: String, required:true }
 },
@@ -66,6 +67,7 @@ const PurchaseOrderSchema= mongoose.Schema({
     order_date:         { type: String, required:true },
     storeofficer_id :   { type: String, required:true },
     inspected_by:       { type: mongoose.Schema.ObjectId, ref: 'Logins' },
+    amendmentInspector: String,
     itemdetails :       ItemInfoSchema,
     vendor_info:        VendorInfoSchema,
     tender_info:        TenderInfoSchema,

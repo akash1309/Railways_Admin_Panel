@@ -21,7 +21,7 @@ exports.findforVendor = (req,res) => {
 exports.findforInspector = (req,res) => {
 
 console.log(req.params.inspected_by);
-	PurchaseOrder.find({inspected_by : req.params.inspected_by})
+	PurchaseOrder.find().or([{inspected_by : req.params.inspected_by} , {amendmentInspector : req.params.inspected_by}])
 	.populate('inspected_by')
 	.populate('ic_id')
 	.then( purchaseOrderInfo => {
