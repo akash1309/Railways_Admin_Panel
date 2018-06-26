@@ -1,7 +1,7 @@
 const { Visit } = require('./../../../models/Schema.js');
 
 exports.findVisitbyVendor = (req,res) => {
-  Visit.find({ vendor_code : req.params.vendor_code})
+  Visit.find({ vendor_code : req.params.vendor_code , visit_status : 'Intimated'})
   .populate('inspector_id')
   .then(visitInfo => {
          res.status(200).send(visitInfo);

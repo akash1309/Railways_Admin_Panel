@@ -78,6 +78,7 @@ exports.findbyStoreOfficer = (req,res) => {
 
 	PurchaseOrder.find({storeofficer_id : req.params.storeofficer_id})
 	.populate('inspected_by')
+	.populate('ic_id')
 	.then( purchaseOrderInfo => {
 		res.status(200).send(purchaseOrderInfo);
 	})

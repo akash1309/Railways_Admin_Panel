@@ -12,6 +12,7 @@ module.exports = function(req, res){
     vendor_code :   req.body.vendor_code
   });
 
+
   Visit.findOne({
     order_number: req.body.order_number
   },function(err, user) {

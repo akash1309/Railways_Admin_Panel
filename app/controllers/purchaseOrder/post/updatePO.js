@@ -2,6 +2,7 @@ const { PurchaseOrder } = require("./../../../models/Schema");
 
 exports.updatePO = (req,res) => {
 
+  console.log("updateinside"+req.body.order_number);
   PurchaseOrder.find({ order_number : req.body.order_number})
   .then(POInfo => {
 

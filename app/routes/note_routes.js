@@ -43,7 +43,8 @@ const deleteItem   =  require('./../controllers/logins/deleteItem');
 
 const addVisits = require('./../controllers/visit/post/visitadd');
 const getVisits = require('./../controllers/visit/get/visitget');
-
+const updateVisits = require('./../controllers/visit/post/visitUpdate');
+const removeVisit = require('./../controllers/visit/post/deleteVisit');
 // Security Functions Implementation
 
 const secure = require('./../controllers/security');
@@ -102,6 +103,8 @@ module.exports = function(app, db) {
 
   app.post('/visit/add',addVisits);
   app.get('/visit/get/:vendor_code',getVisits.findVisitbyVendor);
+  app.post('/visit/update',updateVisits.updateVisit);
+  app.post('/visit/delete',removeVisit.delVisit);
 
   app.post('/signUp',signUp.update);
   app.get('/validate/:mobile',validation.validate);

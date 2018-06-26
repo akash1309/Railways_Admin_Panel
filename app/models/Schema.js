@@ -46,6 +46,21 @@ const TenderInfoSchema= mongoose.Schema({
   timestamps: true
 });
 
+const InspectionCertificateSchema= mongoose.Schema({
+  order_number :      { type: String, required:true },
+  quantity_offered:  { type: String, required:true },
+  quantity_approved: { type: String, required:true },
+  location_of_seal : { type: String, required:true },
+  inspection_date :   { type: String, required:true },
+  ic_signed_on :	  {type: String, required:true},
+  inspector_name :   { type: String, required:true },
+  inspector_mobile : { type:String, required:true }
+},
+{ collection: 'InspectionCertificate' },
+{
+timestamps: true
+});
+
 const PurchaseOrderSchema= mongoose.Schema({
     order_number:       { type: String, required:true },
     order_date:         { type: String, required:true },
@@ -56,7 +71,7 @@ const PurchaseOrderSchema= mongoose.Schema({
     tender_info:        TenderInfoSchema,
     offer_no:		      	{ type: String, required:true },
     offer_date:	    		{ type:String, required:true },
-    ic_id:              String,
+    ic_id:              { type:mongoose.Schema.ObjectId, ref: 'InspectionCertificate'},
     status:             { type:String, required:true },
 },
 { collection: 'PurchaseOrder' },
@@ -85,23 +100,6 @@ const ItemSchema= mongoose.Schema({
 },
 {
   timestamps: true
-});
-
-
-const InspectionCertificateSchema= mongoose.Schema({
-  order_number :      { type: String, required:true },
-  quantity_offered:  { type: String, required:true },
-  quantity_approved: { type: String, required:true },
-  location_of_seal : { type: String, required:true },
-  ic_id:              { type: String, required:true },
-  inspection_date :   { type: String, required:true },
-  ic_signed_on :	  {type: String, required:true},
-  inspector_name :   { type: String, required:true },
-  inspector_mobile : { type:String, required:true }
-},
-{ collection: 'InspectionCertificate' },
-{
-timestamps: true
 });
 
 const CorrigendumSchema= mongoose.Schema({

@@ -5,6 +5,7 @@ exports.findByDyceeId = (req,res) => {
 
 	Logins.find({dycee_id: req.params.dyceeId, role: "StoreOfficer"})
 	.then(StoreOfficerInfo => {
+		console.log(StoreOfficerInfo);
 		res.status(200).send(StoreOfficerInfo);
 	})
 	.catch(err => {
@@ -13,7 +14,7 @@ exports.findByDyceeId = (req,res) => {
 			"error" : err
 		});
 	});
-	
+
 }
 
 exports.findSome = (req,res) => {
@@ -59,6 +60,7 @@ exports.findOne = (req,res) => {
 }
 
 exports.findAll = (req,res) => {
+
   Logins.find({ role : "StoreOfficer"})
   .then(StoreOfficerInfo => {
        if(StoreOfficerInfo.length == 0) {
