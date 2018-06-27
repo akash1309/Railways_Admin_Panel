@@ -55,7 +55,11 @@ const InspectionCertificateSchema= mongoose.Schema({
   inspection_date :   { type: String, required:true },
   ic_signed_on :	  {type: String, required:true},
   inspector_name :   { type: String, required:true },
-  inspector_mobile : { type:String, required:true }
+  inspector_mobile : { type:String, required:true },
+  quantity_on_order : { type:String, required:true },
+  quantity_supplied_so_far : { type:String, required:true },
+  balance_quantity : { type:String, required:true },
+  unit_price :{ type:String, required:true }
 },
 { collection: 'InspectionCertificate' },
 {
@@ -75,6 +79,8 @@ const PurchaseOrderSchema= mongoose.Schema({
     offer_date:	    		{ type:String, required:true },
     ic_id:              { type:mongoose.Schema.ObjectId, ref: 'InspectionCertificate'},
     status:             { type:String, required:true },
+    rejection_reason :  String,
+    corrigendum_flag : String
 },
 { collection: 'PurchaseOrder' },
 {
@@ -107,12 +113,12 @@ const ItemSchema= mongoose.Schema({
 const CorrigendumSchema= mongoose.Schema({
 	corrigendum_number : {type: String, required:true },
     order_number :   	 { type: String, required:true },
-    order_date : 		 {type:String, required:true },
-    ic_id:            	 { type: String, required:true },
-    ic_date :  			 { type: String, required:true },
-    inspector_name :  	 { type: String, required:true },
-    inspector_mobile :	 { type:String, required:true },
-    dycee_id : 				String
+    order_date : 	  	 {type:String, required:true },
+    ic_id:             { type: mongoose.Schema.ObjectId, ref: 'InspectionCertificate' },
+    generated_by :     { type: mongoose.Schema.ObjectId, ref: 'Logins' },
+    dycee_id : 	  		 String,
+    remarks :          String,
+    update_values :    { type:String, required:true }
 },
 { collection: 'Corrigendum' },
 {

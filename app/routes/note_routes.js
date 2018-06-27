@@ -90,7 +90,7 @@ module.exports = function(app, db) {
 
   app.post('/corrigendum/generate',corrigendumGenerate);
   app.get('/corrigendum/showCorrigendum/all',showCorrigendum.findAll);
-  app.get('/corrigendum/showCorrigendum/one',showCorrigendum.findOne);
+  app.get('/corrigendum/showCorrigendum/one/:order_number',showCorrigendum.findOne);
 
   //app.post('/irStatus/set',irStatus.setIrStatus);
   app.get('/irStatus/get/:order_number',irStatus.getIrStatus);

@@ -13,6 +13,7 @@ module.exports = function(req, res){
     offer_no:			     req.body.offer_no,
     offer_date:		     req.body.offer_date,
     status:            req.body.status,
+    corrigendum_flag:  "0"
   });
 
   PurchaseOrder.findOne({

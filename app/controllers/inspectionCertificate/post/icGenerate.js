@@ -11,7 +11,11 @@ module.exports = function(req, res){
 	  inspection_date :   req.body.inspection_date,
 	  ic_signed_on :	    req.body.ic_signed_on,
 	  inspector_name :    req.body.inspector_name,
-	  inspector_mobile:	  req.body.inspector_mobile
+	  inspector_mobile:	  req.body.inspector_mobile,
+    quantity_on_order : req.body.quantity_on_order,
+    quantity_supplied_so_far : req.body.quantity_supplied_so_far,
+    balance_quantity : req.body.balance_quantity,
+    unit_price :       req.body.unit_price
   });
 
   InspectionCertificate.findOne({
