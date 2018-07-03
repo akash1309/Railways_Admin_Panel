@@ -2,7 +2,7 @@ const { Corrigendum } = require('./../../../models/Schema.js');
 
 exports.findOne = (req,res) => {
 
-	Corrigendum.findOne({order_number : req.params.order_number})
+	Corrigendum.findOne({_id : req.params.corrigendum_id})
 	.populate('ic_id')
 	.populate('generated_by')
 	.then(CorrigendumInfo => {

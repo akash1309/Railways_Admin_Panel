@@ -25,6 +25,7 @@ const updatePOInfo = require('./../controllers/purchaseOrder/post/updatePO');
 
 const icGenerate = require('./../controllers/inspectionCertificate/post/icGenerate');
 const showIC = require('./../controllers/inspectionCertificate/get/showIC');
+const updateICInfo = require('./../controllers/inspectionCertificate/post/updateIC');
 
 const showItems = require('./../controllers/items/get/showItems');
 const itemAdd = require('./../controllers/items/post/additem');
@@ -77,6 +78,7 @@ module.exports = function(app, db) {
   app.get('/purchaseorder/vendor/:code',getPurchaseOrder.findforVendor);
   app.get('/purchaseorder/storeofficer/:storeofficer_id', secure.hasStoreOfficerOrDyceeRole, getPurchaseOrder.findbyStoreOfficer);
   app.get('/purchaseorder/inspector/:inspected_by', secure.hasInspectorRole, getPurchaseOrder.findforInspector);
+  app.get('/purchaseorder/po_remaining/:vendor_code',getPurchaseOrder.POCount);
 
   app.post('/vendor/add',vendorAdd);
   app.get('/vendor/all',getAllVendors.findAll);
@@ -84,13 +86,14 @@ module.exports = function(app, db) {
   app.get('/vendor/some',getAllVendors.findSome);
   app.get('/vendor/:storeofficer_id',getAllVendors.findbyStoreOfficer);
 
+  app.post('/updateIC',updateICInfo.updateIC);
   app.post('/ic/generate',icGenerate);
-  app.get('/showIC/all',showIC.findAll);
+  app.get('/showIC/all/:order_number',showIC.findAll);
   app.get('/showIC/one',showIC.findOne);
 
   app.post('/corrigendum/generate',corrigendumGenerate);
   app.get('/corrigendum/showCorrigendum/all',showCorrigendum.findAll);
-  app.get('/corrigendum/showCorrigendum/one/:order_number',showCorrigendum.findOne);
+  app.get('/corrigendum/showCorrigendum/one/:corrigendum_id',showCorrigendum.findOne);
 
   //app.post('/irStatus/set',irStatus.setIrStatus);
   app.get('/irStatus/get/:order_number',irStatus.getIrStatus);

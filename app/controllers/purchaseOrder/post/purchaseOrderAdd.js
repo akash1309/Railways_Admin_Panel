@@ -12,8 +12,7 @@ module.exports = function(req, res){
     tender_info: 		   req.body.tender_info,
     offer_no:			     req.body.offer_no,
     offer_date:		     req.body.offer_date,
-    status:            req.body.status,
-    corrigendum_flag:  "0"
+    status:            req.body.status
   });
 
   PurchaseOrder.findOne({

@@ -1,4 +1,5 @@
 const { Logins } = require('./../../../models/Schema.js');
+const { PurchaseOrder } = require('./../../../models/Schema.js');
 
 exports.findSome = (req,res) => {
 
@@ -67,7 +68,33 @@ exports.findAll = (req,res) => {
 exports.findbyStoreOfficer = (req,res) => {
   Logins.find({ storeofficer_id : req.params.storeofficer_id})
   .then(vendorInfo => {
-         res.status(200).send(vendorInfo);
+
+			vendorInfo.map(x => {
+
+			return PurchaseOrder.find({'vendor_info.code' : x.vendor_code})
+					.populate('ic_id')
+					.then( purchaseOrderInfo => {
+						console.log(purchaseOrderInfo);
+						var	user = Logins({
+			 					name: x.name,
+			 					email: x.email,
+			 					mobile: x.mobile,
+			 					password: x.password,
+			 					location: x.location,
+			 				  address: x.address,
+			 				  cee_id :   x.cee_id,
+			 				  dycee_id :  x.dycee_id,
+			 				  storeofficer_id : x.storeofficer_id,
+			 				  vendor_code: x.vendor_code,
+			 				  role :  x.role,
+			 				  po_remaining : purchaseOrderInfo.length
+			 				});
+							return res.status(200).send(user);
+					});
+
+
+				})
+
   })
   .catch(err => {
 

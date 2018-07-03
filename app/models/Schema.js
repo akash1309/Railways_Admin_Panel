@@ -11,7 +11,8 @@ const LoginsSchema = mongoose.Schema({
   dycee_id :    String,
   storeofficer_id : String,
   vendor_code:  String,
-  role :        {type:String, required: true }
+  role :        {type:String, required: true },
+  po_remaining : Number
 },
 { collection: 'Logins' },
 {
@@ -59,7 +60,11 @@ const InspectionCertificateSchema= mongoose.Schema({
   quantity_on_order : { type:String, required:true },
   quantity_supplied_so_far : { type:String, required:true },
   balance_quantity : { type:String, required:true },
-  unit_price :{ type:String, required:true }
+  unit_price :{ type:String, required:true },
+  remarks : String,
+  materials_offered_date : { type:String, required:true },
+  rejection_reason :  String,
+  corrigendum_id : { type:mongoose.Schema.ObjectId, ref: 'Corrigendum'}
 },
 { collection: 'InspectionCertificate' },
 {
@@ -78,9 +83,7 @@ const PurchaseOrderSchema= mongoose.Schema({
     offer_no:		      	{ type: String, required:true },
     offer_date:	    		{ type:String, required:true },
     ic_id:              { type:mongoose.Schema.ObjectId, ref: 'InspectionCertificate'},
-    status:             { type:String, required:true },
-    rejection_reason :  String,
-    corrigendum_flag : String
+    status:             { type:String, required:true }
 },
 { collection: 'PurchaseOrder' },
 {

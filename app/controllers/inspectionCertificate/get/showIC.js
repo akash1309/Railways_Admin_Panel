@@ -23,7 +23,9 @@ exports.findOne = (req,res) => {
 
 
 exports.findAll = (req,res) => {
-	InspectionCertificate.find()
+	InspectionCertificate.find({order_number : req.params.order_number})
+	.populate('corrigendum_number')
+	.sort({ic_signed_on : -1})
 	.then(icInfo => {
 		if(icInfo.length == 0) {
             return res.status(404).send({
