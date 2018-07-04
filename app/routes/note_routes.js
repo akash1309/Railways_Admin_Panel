@@ -53,60 +53,60 @@ const secure = require('./../controllers/security');
 module.exports = function(app, db) {
   app.post('/cee/signup', ceeSignup);
 
-  app.post('/dycee/add',dyceeAdd);
-  app.get('/dycee/all',getAllDyCee.findAll);
+  app.post('/dycee/add', secure.hasCEERole, dyceeAdd);
+  app.get('/dycee/all', secure.hasCEERole , getAllDyCee.findAll);
   app.get('/dycee/one',getAllDyCee.findOne);
   app.get('/dycee/some',getAllDyCee.findSome);
 
   app.get('/user/:_id',getUser.findOne);
 
-  app.post('/inspector/add', inspectorAdd);
+  app.post('/inspector/add', secure.hasDyceeRole, inspectorAdd);
   app.get('/inspector/some',getAllInspectors.findSome);
-  app.get('/inspector/all',getAllInspectors.findAll);
+  app.get('/inspector/all', secure.hasCEERole, getAllInspectors.findAll);
   app.get('/inspector/one',getAllInspectors.findOne);
-  app.get('/inspector/:dyceeId',getAllInspectors.findByDyceeId);
+  app.get('/inspector/:dyceeId', secure.hasDyceeRole, getAllInspectors.findByDyceeId);
 
-  app.post('/storeofficer/add', storeOfficerAdd);
-  app.get('/storeofficer/all',getAllStoreOfficers.findAll);
+  app.post('/storeofficer/add', secure.hasDyceeRole, storeOfficerAdd);
+  app.get('/storeofficer/all', secure.hasCEERole, getAllStoreOfficers.findAll);
   app.get('/storeofficer/one',getAllStoreOfficers.findOne);
-  app.get('/storeofficer/:dyceeId',getAllStoreOfficers.findByDyceeId);
+  app.get('/storeofficer/:dyceeId', secure.hasDyceeRole, getAllStoreOfficers.findByDyceeId);
 
-  app.post('/purchaseorder/add', purchaseOrderAdd);
-  app.get('/purchaseorder/all',getPurchaseOrder.findAll);
+  app.post('/purchaseorder/add', secure.hasStoreOfficerRole, purchaseOrderAdd);
+  app.get('/purchaseorder/all', secure.hasCEERole, getPurchaseOrder.findAll);
   app.post('/updatePurchaseOrder',updatePOInfo.updatePO);
-  app.get('/purchaseorder/:order_number',getPurchaseOrder.findOne);
-  app.get('/purchaseorder/vendor/:code',getPurchaseOrder.findforVendor);
+  app.get('/purchaseorder/:order_number', secure.hasStoreOfficerRole, getPurchaseOrder.findOne);
+  app.get('/purchaseorder/vendor/:code', secure.hasVendorRole, getPurchaseOrder.findforVendor);
   app.get('/purchaseorder/storeofficer/:storeofficer_id', secure.hasStoreOfficerOrDyceeRole, getPurchaseOrder.findbyStoreOfficer);
   app.get('/purchaseorder/inspector/:inspected_by', secure.hasInspectorRole, getPurchaseOrder.findforInspector);
   app.get('/purchaseorder/po_remaining/:vendor_code',getPurchaseOrder.POCount);
 
-  app.post('/vendor/add',vendorAdd);
+  app.post('/vendor/add', secure.hasStoreOfficerRole, vendorAdd);
   app.get('/vendor/all',getAllVendors.findAll);
   app.get('/vendor/one',getAllVendors.findOne);
   app.get('/vendor/some',getAllVendors.findSome);
   app.get('/vendor/:storeofficer_id',getAllVendors.findbyStoreOfficer);
 
   app.post('/updateIC',updateICInfo.updateIC);
-  app.post('/ic/generate',icGenerate);
+  app.post('/ic/generate', secure.hasInspectorRole, icGenerate);
   app.get('/showIC/all/:order_number',showIC.findAll);
   app.get('/showIC/one',showIC.findOne);
 
-  app.post('/corrigendum/generate',corrigendumGenerate);
+  app.post('/corrigendum/generate', secure.hasInspectorRole, corrigendumGenerate);
   app.get('/corrigendum/showCorrigendum/all',showCorrigendum.findAll);
   app.get('/corrigendum/showCorrigendum/one/:corrigendum_id',showCorrigendum.findOne);
 
   //app.post('/irStatus/set',irStatus.setIrStatus);
   app.get('/irStatus/get/:order_number',irStatus.getIrStatus);
   app.get('/showIR',irStatus.findAll);
-  app.post('/generateIr',irStatus.generate);
+  app.post('/generateIr', secure.hasInspectorRole, irStatus.generate);
 
   app.get('/showItems/all',showItems.findAll);
   app.post('/items/add',itemAdd);
   app.get('/showItems/one',showItems.findOne);
 
-  app.post('/visit/add',addVisits);
-  app.get('/visit/get/:vendor_code',getVisits.findVisitbyVendor);
-  app.post('/visit/update',updateVisits.updateVisit);
+  app.post('/visit/add', secure.hasInspectorRole, addVisits);
+  app.get('/visit/get/:vendor_code', secure.hasVendorRole, getVisits.findVisitbyVendor);
+  app.post('/visit/update', secure.hasInspectorRole, updateVisits.updateVisit);
   app.post('/visit/delete',removeVisit.delVisit);
 
   app.post('/signUp',signUp.update);
@@ -115,7 +115,7 @@ module.exports = function(app, db) {
 
   app.post('/updateinfo',updateInfo.updateUser);
   app.post('/deleteInfo',deleteInfo.delUser);
-  app.post('/deletePO',deletePO.delPO);
+  app.post('/deletePO', secure.hasStoreOfficerRole, deletePO.delPO);
   app.post('/deleteItem',deleteItem.delItems);
 
   app.get('/start',initialResponse);

@@ -22,6 +22,7 @@ module.exports = function(req, res){
 
   newInspectionCertificate.save(function(err, certificate) {
     if (err) {
+      console.log(err);
       return res.status(500).send({
         "message" : "Error in generating inspection certificate!",
         "error" : err

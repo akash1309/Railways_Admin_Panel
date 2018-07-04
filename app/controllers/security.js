@@ -38,7 +38,7 @@ exports.hasCEERole = (req,res,next) => {
 
 
 exports.hasInspectorRole = (req,res,next) => {
-	
+
 	Logins.findOne({ _id : req.headers.security_token})
 	.then(inspectorInfo => {
     if(inspectorInfo && inspectorInfo.role == 'Inspector')

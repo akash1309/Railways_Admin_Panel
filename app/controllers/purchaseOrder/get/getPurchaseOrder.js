@@ -61,6 +61,7 @@ exports.findAll = (req,res) => {
 	PurchaseOrder.find()
 	.populate('inspected_by')
 	.populate('ic_id')
+	.sort({order_date : -1})
 	.then(purchaseOrderInfo => {
 		if(purchaseOrderInfo.length == 0) {
             return res.status(404).send({
