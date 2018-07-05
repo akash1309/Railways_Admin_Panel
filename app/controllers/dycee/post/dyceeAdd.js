@@ -1,5 +1,6 @@
 // routes/note_routes.js
 const { Logins } = require('./../../../models/Schema.js');
+const sendEmail = require('./../../../service/EmailService.js');
 
 module.exports = function(req, res){
 
@@ -34,8 +35,15 @@ module.exports = function(req, res){
             "error" : err
           });
         }
-        else
+        else{
+          var options = {
+            to : req.body.email,
+            subject : "CWL Railways System Signup",
+            message : "Your account has been created by CEE. Login with your mobile number "+req.body.mobile+" and set your password!!"
+          };
+          sendEmail(options);
           res.status(200).send(user);
+        }
       });
     }
   });

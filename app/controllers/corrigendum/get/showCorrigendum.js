@@ -2,11 +2,13 @@ const { Corrigendum } = require('./../../../models/Schema.js');
 
 exports.findOne = (req,res) => {
 
-	Corrigendum.find({corrigendum_number : req.params.corrigendum_number})
+	Corrigendum.findOne({_id : req.params.corrigendum_id})
+	.populate('ic_id')
+	.populate('generated_by')
 	.then(CorrigendumInfo => {
 		if(CorrigendumInfo.length == 0) {
             return res.status(404).send({
-                "message": "No Corrigendum with corrigendum_number " + req.params.corrigendum_number
+                "message": "No Corrigendum found"
             });
         }
 		res.status(200).send(CorrigendumInfo);

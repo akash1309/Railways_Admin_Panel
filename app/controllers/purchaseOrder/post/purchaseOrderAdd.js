@@ -1,5 +1,6 @@
 // routes/note_routes.js
 const { PurchaseOrder } = require('./../../../models/Schema.js');
+const sendEmail = require('./../../../service/EmailService.js');
 
 module.exports = function(req, res){
 
@@ -12,7 +13,7 @@ module.exports = function(req, res){
     tender_info: 		   req.body.tender_info,
     offer_no:			     req.body.offer_no,
     offer_date:		     req.body.offer_date,
-    status:            req.body.status,
+    status:            req.body.status
   });
 
   PurchaseOrder.findOne({
@@ -37,8 +38,15 @@ module.exports = function(req, res){
             "error" :  err
           });
         }
-        else
+        else{
+          var options = {
+            to : req.body.vendor_info.email,
+            subject : "CWL Railways System Purchase Order",
+            message : "You have a new purchase order from CWL Railways!!"
+          };
+          sendEmail(options);
           res.status(200).send(order);
+        }
       });
     }
   });

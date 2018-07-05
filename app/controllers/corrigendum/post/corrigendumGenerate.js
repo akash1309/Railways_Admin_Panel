@@ -8,9 +8,9 @@ module.exports = function(req, res){
 	    order_number :   	   req.body.order_number,
 	    order_date : 		     req.body.order_date,
 	    ic_id:            	 req.body.ic_id,
-	    ic_date :  			     req.body.ic_date,
-	    inspector_name :  	 req.body.inspector_name,
-	    inspector_mobile :	 req.body.inspector_mobile
+	    generated_by :       req.body.generated_by,
+      remarks :            req.body.remarks,
+      update_values   :    req.body.update_values
   });
 
   Corrigendum.findOne({
@@ -30,7 +30,7 @@ module.exports = function(req, res){
     else{
       newCorrigendum.save(function(err, corrigendum) {
         if (err) {
-          return res.statuss(500).send({
+          return res.status(500).send({
             "message" : "Error in generating Corrigendum!",
             "error" : err
           });

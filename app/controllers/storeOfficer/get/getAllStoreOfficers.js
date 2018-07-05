@@ -13,7 +13,7 @@ exports.findByDyceeId = (req,res) => {
 			"error" : err
 		});
 	});
-	
+
 }
 
 exports.findSome = (req,res) => {
@@ -59,6 +59,7 @@ exports.findOne = (req,res) => {
 }
 
 exports.findAll = (req,res) => {
+
   Logins.find({ role : "StoreOfficer"})
   .then(StoreOfficerInfo => {
        if(StoreOfficerInfo.length == 0) {

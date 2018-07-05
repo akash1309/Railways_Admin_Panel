@@ -38,6 +38,7 @@ exports.hasCEERole = (req,res,next) => {
 
 
 exports.hasInspectorRole = (req,res,next) => {
+
 	Logins.findOne({ _id : req.headers.security_token})
 	.then(inspectorInfo => {
     if(inspectorInfo && inspectorInfo.role == 'Inspector')
@@ -98,6 +99,78 @@ exports.hasStoreOfficerOrDyceeRole = (req,res,next) => {
 	Logins.findOne({ _id : req.headers.security_token})
 	.then(storeOfficerInfo => {
     if(storeOfficerInfo && (storeOfficerInfo.role == 'StoreOfficer' || storeOfficerInfo.role == 'DyCEE'))
+		next();
+    else{
+      return res.status(500).send({
+  			"message": "Invalid Token"
+  		});
+    }
+	})
+	.catch(err => {
+		return res.status(500).send({
+			"message": "Invalid Token"
+		});
+	});
+}
+
+exports.hasStoreOfficerorInspectorRole = (req,res,next) => {
+	Logins.findOne({ _id : req.headers.security_token})
+	.then(UserInfo => {
+    if(UserInfo && (UserInfo.role == 'StoreOfficer' || UserInfo.role == 'Inspector'))
+		next();
+    else{
+      return res.status(500).send({
+  			"message": "Invalid Token"
+  		});
+    }
+	})
+	.catch(err => {
+		return res.status(500).send({
+			"message": "Invalid Token"
+		});
+	});
+}
+
+exports.hasCeeorInspectorRole = (req,res,next) => {
+	Logins.findOne({ _id : req.headers.security_token})
+	.then(UserInfo => {
+    if(UserInfo && (UserInfo.role == 'CEE' || UserInfo.role == 'Inspector'))
+		next();
+    else{
+      return res.status(500).send({
+  			"message": "Invalid Token"
+  		});
+    }
+	})
+	.catch(err => {
+		return res.status(500).send({
+			"message": "Invalid Token"
+		});
+	});
+}
+
+exports.hasexceptCeeRole = (req,res,next) => {
+	Logins.findOne({ _id : req.headers.security_token})
+	.then(UserInfo => {
+    if(UserInfo && (UserInfo.role == 'DyCEE' || UserInfo.role == 'Inspector' || UserInfo.role == 'StoreOfficer' || UserInfo.role == 'Vendor'))
+		next();
+    else{
+      return res.status(500).send({
+  			"message": "Invalid Token"
+  		});
+    }
+	})
+	.catch(err => {
+		return res.status(500).send({
+			"message": "Invalid Token"
+		});
+	});
+}
+
+exports.hasDyceeInspectorVendorRole = (req,res,next) => {
+	Logins.findOne({ _id : req.headers.security_token})
+	.then(UserInfo => {
+    if(UserInfo && (UserInfo.role == 'DyCEE' || UserInfo.role == 'Inspector' || UserInfo.role == 'Vendor'))
 		next();
     else{
       return res.status(500).send({

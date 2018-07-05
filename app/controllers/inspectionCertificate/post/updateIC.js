@@ -1,18 +1,17 @@
-const { PurchaseOrder } = require("./../../../models/Schema");
+const { InspectionCertificate } = require("./../../../models/Schema");
 
-exports.updatePO = (req,res) => {
+exports.updateIC = (req,res) => {
 
-  console.log("updateinside"+req.body.order_number);
-  PurchaseOrder.find({ order_number : req.body.order_number})
-  .then(POInfo => {
+  InspectionCertificate.find({ _id : req.body.ic_id , order_number : req.body.order_number })
+  .then(ICInfo => {
 
-    if(POInfo.length != 0) {
-          return updatePO(req,res,req.body.order_number);
+    if(ICInfo.length != 0) {
+          return updateIC(req,res);
         }
 
     else {
         return res.status(204).send({
-              "message" : "purchase order to be updated is not present!"
+              "message" : "IC to be updated is not present!"
             });
 
     }
@@ -20,7 +19,7 @@ exports.updatePO = (req,res) => {
   })
   .catch(err => {
     return res.status(500).send({
-      "message": "Error occurred while fetching purchase order.",
+      "message": "Error occurred while fetching IC.",
       "error" : err
     });
 
@@ -30,11 +29,11 @@ exports.updatePO = (req,res) => {
 
 
 
-function updatePO(req,res,order_number)
+function updateIC(req,res,order_number)
 {
   var x = req.body;
 
-    PurchaseOrder.update({ order_number : req.body.order_number },
+    InspectionCertificate.update({ _id : req.body.ic_id , order_number : req.body.order_number },
       x,
       function(err,response){
 
