@@ -68,32 +68,13 @@ exports.findAll = (req,res) => {
 exports.findbyStoreOfficer = (req,res) => {
   Logins.find({ storeofficer_id : req.params.storeofficer_id})
   .then(vendorInfo => {
-
-			vendorInfo.map(x => {
-
-			return PurchaseOrder.find({'vendor_info.code' : x.vendor_code})
-					.populate('ic_id')
-					.then( purchaseOrderInfo => {
-						console.log(purchaseOrderInfo);
-						var	user = Logins({
-			 					name: x.name,
-			 					email: x.email,
-			 					mobile: x.mobile,
-			 					password: x.password,
-			 					location: x.location,
-			 				  address: x.address,
-			 				  cee_id :   x.cee_id,
-			 				  dycee_id :  x.dycee_id,
-			 				  storeofficer_id : x.storeofficer_id,
-			 				  vendor_code: x.vendor_code,
-			 				  role :  x.role,
-			 				  po_remaining : purchaseOrderInfo.length
-			 				});
-							return res.status(200).send(user);
-					});
-
-
-				})
+		if(vendorInfo.length == 0) {
+			return res.status(404).send(
+				{
+					"message" : "No Vendor found!"
+				});
+		}
+			res.status(200).send(vendorInfo);
 
   })
   .catch(err => {

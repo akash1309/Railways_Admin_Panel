@@ -4,7 +4,7 @@ exports.hasDyceeRole = (req,res,next) => {
 	Logins.findOne({ _id : req.headers.security_token})
 	.then(DyCEEInfo => {
     if(DyCEEInfo && DyCEEInfo.role == 'DyCEE')
-		next();
+			next();
     else{
       return res.status(500).send({
   			"message": "Invalid Token"
@@ -12,6 +12,7 @@ exports.hasDyceeRole = (req,res,next) => {
     }
 	})
 	.catch(err => {
+		console.log(req.headers.security_token);
 		return res.status(500).send({
 			"message": "Invalid Token"
 		});
