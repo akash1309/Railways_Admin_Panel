@@ -43,7 +43,7 @@ module.exports = function(req, res){
           var options = {
             to : req.body.vendor_info.email,
             subject : "CWL Railways System Purchase Order",
-            message : "You have a new purchase order from CWL Railways!!"
+            message : "You have a new purchase order : "+req.body.order_number +" from CWL Railways!!"
           };
           sendEmail(options);
 

@@ -1,4 +1,6 @@
 const { PurchaseOrder } = require("./../../models/Schema");
+const { Logins } = require("./../../models/Schema");
+const sendEmail = require('./../../service/EmailService.js');
 
 exports.delPO = (req,res) => {
 
@@ -40,10 +42,44 @@ function delUserFunc(req,res)
           }
         else {
            console.log(response);
+           var options = {
+             to : req.body.email,
+             subject : "CWL Railways System",
+             message : "Purchase order : "+req.body.order_number+" has been cancelled by StoreOfficer!!"
+           };
+           sendEmail(options);
+           updateVendorPOCount(req);
             return res.status(200).send({
               "message" : "Successfully removed..."
             });
           }
 
         });
+  }
+
+  function updateVendorPOCount(req){
+
+    Logins.findOne({ vendor_code : req.body.vendor_code})
+    .then(VendorInfo => {
+
+      if(VendorInfo.length != 0) {
+        Logins.update({ vendor_code : req.body.vendor_code },
+          { po_remaining : VendorInfo.po_remaining - 1},
+          function(err,response){
+            if(err){
+              console.log(err);
+              }
+            else {
+               console.log("po ",response);
+              }
+          }
+        );
+      }
+      else {
+          console.log("Vendor is not present");
+      }
+    })
+    .catch(err => {
+      console.log(err);
+    });
   }

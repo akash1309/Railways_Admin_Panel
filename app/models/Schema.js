@@ -83,7 +83,8 @@ const PurchaseOrderSchema= mongoose.Schema({
     offer_no:		      	{ type: String, required:true },
     offer_date:	    		{ type:String, required:true },
     ic_id:              { type:mongoose.Schema.ObjectId, ref: 'InspectionCertificate'},
-    status:             { type:String, required:true }
+    status:             { type:String, required:true },
+    email :             String
 },
 { collection: 'PurchaseOrder' },
 {

@@ -39,6 +39,11 @@ function getJSON(role,req) {
     var x = '{ "name" : "'+req.body.name+'" , "password" : "'+req.body.password+'" , "email" : "'+req.body.email+'" , "mobile" : "'+req.body.mobile+'" }';
     return JSON.parse(x);
   }
+  else if(role == "Vendor")
+  {
+    var x = '{ "name" : "'+req.body.name+'" , "password" : "'+req.body.password+'" , "email" : "'+req.body.email+'" , "mobile" : "'+req.body.mobile+'" , "address" : "' + req.body.address + '" }';
+    return JSON.parse(x);
+  }
   else
   {
     var x = '{ "name" : "'+req.body.name+'" , "password" : "'+req.body.password+'" , "email" : "'+req.body.email+'" , "mobile" : "'+req.body.mobile+'" , "location" : "' + req.body.location + '" }';
