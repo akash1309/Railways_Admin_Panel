@@ -65,3 +65,44 @@ exports.findAll = (req,res) => {
 
 	});
 }
+
+exports.findEmail = (req,res) => {
+
+	Logins.findOne({ _id : req.params.inspectororstoreofficer_id})
+	.then(InspectorOrStoreOfficerInfo => {
+		if(InspectorOrStoreOfficerInfo.length == 0) {
+            return res.status(404).send({
+                "message": "No User found"
+            });
+        }
+		var dyceeId = InspectorOrStoreOfficerInfo.dycee_id;
+
+			Logins.findOne({ _id : dyceeId})
+			.then(DyCEEInfo => {
+				if(DyCEEInfo.length == 0) {
+								return res.status(404).send({
+										"message": "No DyCEE found"
+								});
+						}
+				res.status(200).send({
+					"email" : DyCEEInfo.email
+				});
+			})
+			.catch(err => {
+
+				return res.status(500).send({
+					"message": "Error occurred while fetching all DyCEE.",
+					"error" : err
+				});
+
+			});
+	})
+	.catch(err => {
+
+		return res.status(500).send({
+			"message": "Error occurred while fetching Inspector.",
+			"error" : err
+		});
+
+	});
+}

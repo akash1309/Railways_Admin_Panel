@@ -167,21 +167,3 @@ exports.hasexceptCeeRole = (req,res,next) => {
 		});
 	});
 }
-
-exports.hasDyceeInspectorVendorRole = (req,res,next) => {
-	Logins.findOne({ _id : req.headers.security_token})
-	.then(UserInfo => {
-    if(UserInfo && (UserInfo.role == 'DyCEE' || UserInfo.role == 'Inspector' || UserInfo.role == 'Vendor'))
-		next();
-    else{
-      return res.status(500).send({
-  			"message": "Invalid Token"
-  		});
-    }
-	})
-	.catch(err => {
-		return res.status(500).send({
-			"message": "Invalid Token"
-		});
-	});
-}

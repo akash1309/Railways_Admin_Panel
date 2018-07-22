@@ -83,3 +83,42 @@ exports.findAll = (req,res) => {
   });
 
 }
+
+exports.findbyVendor = (req,res) => {
+
+	Logins.findOne({_id: req.params.vendor_id})
+	.then(VendorInfo => {
+
+		if(VendorInfo.length == 0) {
+            return res.status(404).send({
+                "message": "No Vendor found"
+            });
+        }
+		var storeOfficerId = VendorInfo.storeofficer_id;
+
+			Logins.findOne({ _id : storeOfficerId})
+			.then(StoreOfficerInfo => {
+				if(StoreOfficerInfo.length == 0) {
+								return res.status(404).send({
+										"message": "No StoreOfficer found"
+								});
+						}
+				res.status(200).send(StoreOfficerInfo);
+			})
+			.catch(err => {
+
+				return res.status(500).send({
+					"message": "Error occurred while fetching all DyCEE.",
+					"error" : err
+				});
+
+			});
+	})
+	.catch(err => {
+		return res.status(500).send({
+			"message": "Some error occurred while getting StoreOfficer by vendor!",
+			"error" : err
+		});
+	});
+
+}

@@ -57,6 +57,7 @@ module.exports = function(app, db) {
   app.get('/dycee/all', secure.hasCEERole , getAllDyCee.findAll);
   app.get('/dycee/one',getAllDyCee.findOne);
   app.get('/dycee/some',getAllDyCee.findSome);
+  app.get('/dycee/email/:inspectororstoreofficer_id',getAllDyCee.findEmail);
 
   app.get('/user/cee/:_id', secure.hasCEERole, getUser.findOne);
   app.get('/user/dycee/:_id', secure.hasDyceeRole, getUser.findOne);
@@ -75,6 +76,7 @@ module.exports = function(app, db) {
   app.get('/storeofficer/all', secure.hasCEERole, getAllStoreOfficers.findAll);
   app.get('/storeofficer/one',getAllStoreOfficers.findOne);
   app.get('/storeofficer/:dyceeId', secure.hasDyceeRole, getAllStoreOfficers.findByDyceeId);
+  app.get('/storeofficer/vendor/:vendor_id',getAllStoreOfficers.findbyVendor);
 
   app.post('/purchaseorder/add', secure.hasStoreOfficerRole, purchaseOrderAdd);
   app.get('/purchaseorder/all', secure.hasCEERole, getPurchaseOrder.findAll);
@@ -112,7 +114,7 @@ module.exports = function(app, db) {
   app.post('/visit/add', secure.hasInspectorRole, addVisits);
   app.get('/visit/get/:vendor_code', secure.hasVendorRole, getVisits.findVisitbyVendor);
   app.post('/visit/update', secure.hasInspectorRole, updateVisits.updateVisit);
-  app.post('/visit/delete', secure.hasDyceeInspectorVendorRole, removeVisit.delVisit);
+  app.post('/visit/delete', removeVisit.delVisit);
 
   app.post('/signUp',signUp.update);
   app.get('/validate/:mobile',validation.validate);
