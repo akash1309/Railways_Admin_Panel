@@ -13,6 +13,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors({origin: '*'}));
 
 const port = 8080;
+
+// Commenting consoles in production
+  console.log = function(){};
+
+
 // MongoDB Connection using mongoose
 mongoose.connect(config.dbUrl, (err, database) => {
   if (err) return console.log(err)
